@@ -8,7 +8,7 @@ Min tanke är därför att skapa en plattform likt twitter där användare ska k
 
 Applikationen ska använda ramverket SignalR för realtidskommunikationen mellan klientgränssnittet och server-side API:et. Det grafiska klientgränssnittet kommer att byggas i React och server-side API:et kommer att byggas i ASP.NET Core och C#.
 
-### Initial planering - kanban via trello
+### Inledande planering - kanban via trello
 
 _(Tryck på bilden för att göra den större)_
 

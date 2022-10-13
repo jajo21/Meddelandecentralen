@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as signalR from '@microsoft/signalr';
+import { getMessages, startConnection } from '../service/connection';
 
 function Chat() {
 
@@ -9,7 +10,6 @@ function Chat() {
     const [messages, setMessages] = useState([]);
 
     const sendMessage = async (nick, message) => {
-        if (!connection.state === "Connected") location.reload();
         try {
             await connection.invoke('SendMessage', nick, message)
         } catch (error) {
@@ -19,27 +19,17 @@ function Chat() {
     }
 
     useEffect(() => {
-        const createHubConnection = async () => {
-            const connect = new signalR.HubConnectionBuilder()
-                .withUrl("https://localhost:6001/chathub")
-                .withAutomaticReconnect()
-                .configureLogging(signalR.LogLevel.Information)
-                .build();
-
-            try {
-                await connect.start()
-                    .then(() => console.log('Connection started!'))
-            } catch (err) {
-                console.log('Error while establishing connection :(')
+        if (connection === null) {
+            const createHubConnection = async () => {
+                const connection = await startConnection();
+                setConnection(connection);
             }
-
-            setConnection(connect)
+            createHubConnection();
         }
-        createHubConnection();
     }, [])
 
     useEffect(() => {
-        const conn = () => {
+        const connectionOn = () => {
             if (connection) {
                 connection.on('ReceiveMessage', (nick, receivedMessage) => {
                     const text = `${nick}: ${receivedMessage}`;
@@ -48,7 +38,7 @@ function Chat() {
                 });
             }
         }
-        conn();
+        connectionOn();
     }, [connection, messages])
 
     return (

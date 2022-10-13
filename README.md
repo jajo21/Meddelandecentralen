@@ -12,6 +12,7 @@ Applikationen ska använda ramverket SignalR för realtidskommunikationen mellan
 
 _(Tryck på bilden för att göra den större)_
 
-<img src="./documentation/Meddelandecentralen-kanban.png" width="100%">
+<img src="./documentation/Meddelandecentralen-kanban.png" width="100%">  
 
+### [Länk till kanban-tavlan](https://trello.com/b/SAuwn9pa/meddelandecentralen)
 ---

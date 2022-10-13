@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import * as signalR from '@microsoft/signalr';
-import { getMessages, startConnection } from '../service/connection';
+import { startConnection } from '../service/connection';
 
 function Chat() {
 
     const [connection, setConnection] = useState(null);
-    const [nick, setNick] = useState('');
-    const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([]);
+    const [user, setUser] = useState('');
+    const [post, setPost] = useState('');
+    const [posts, setPosts] = useState([]);
 
-    const sendMessage = async (nick, message) => {
+    const sendPost = async (user, message) => {
         try {
-            await connection.invoke('SendMessage', nick, message)
+            await connection.invoke('SendPost', { user, message })
         } catch (error) {
             console.log(error);
         }
-        setMessage('');
     }
 
     useEffect(() => {
@@ -31,39 +29,50 @@ function Chat() {
     useEffect(() => {
         const connectionOn = () => {
             if (connection) {
-                connection.on('ReceiveMessage', (nick, receivedMessage) => {
-                    const text = `${nick}: ${receivedMessage}`;
-                    const msgs = messages.concat([text]);
-                    setMessages(msgs);
+                connection.on('ReceivePost', (postInfo) => {
+                    console.log("postInfo", postInfo);
+                    const postsArray = posts.concat([postInfo]);
+                    console.log("postArray", postsArray);
+                    setPosts(postsArray);
                 });
             }
         }
         connectionOn();
-    }, [connection, messages])
+    }, [connection, posts])
 
     return (
-        <div>
+        <>
             <br />
             <input
                 type="text"
-                value={nick}
-                onChange={e => setNick(e.target.value)}
+                value={user}
+                onChange={e => setUser(e.target.value)}
             />
 
             <input
                 type="text"
-                value={message}
-                onChange={e => setMessage(e.target.value)}
+                value={post}
+                onChange={e => setPost(e.target.value)}
             />
 
-            <button onClick={() => sendMessage(nick, message)}>Send</button>
+            <button onClick={() => sendPost(user, post)}>Send</button>
 
-            <div>
-                {messages.map((message, index) => (
-                    <span style={{ display: 'block' }} key={index}> {message} </span>
-                ))}
+
+
+
+            <div className='posts'>
+                {posts.length > 0 && posts.map((post, index) => {
+                    return (
+                        <div className='post' key={index}> {/* Byt till ID när det är fixat */}
+                            <div>"Picture"</div>
+                            <h3>{post.user}</h3>
+                            <p>{post.date}</p>
+                            <p>{post.message}</p>
+                        </div>
+                    )
+                })}
             </div>
-        </div>
+        </>
     )
 }
 

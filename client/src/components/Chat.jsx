@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { startConnection } from '../service/connection';
 
+import AddPost from './AddPost';
 import AddRoom from './AddRoom';
+import Posts from './Posts';
 
 function Chat() {
 
@@ -12,23 +14,6 @@ function Chat() {
     const [rooms, setRooms] = useState([]);
     const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
-
-
-    const sendPost = async (user, message, roomId) => {
-        try {
-            await connection.invoke('SendPost', { user, message, roomId })
-        } catch (error) {
-            console.log(error);
-        }
-    }
-
-    const addRoom = async (name) => {
-        try {
-            await connection.invoke('AddRoom', { name })
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     useEffect(() => {
         if (connection === null) {
@@ -66,55 +51,25 @@ function Chat() {
 
     return (
         <>
-            <br />
-            <input
-                type="text"
-                value={user}
-                onChange={e => setUser(e.target.value)}
+            <AddPost
+                connection={connection}
+                user={user}
+                post={post}
+                roomId={roomId}
+                rooms={rooms}
+                setUser={setUser}
+                setPost={setPost}
+                setRoomId={setRoomId}
             />
-
-            <input
-                type="text"
-                value={post}
-                onChange={e => setPost(e.target.value)}
-            />
-
-            <select
-                name="room"
-                onChange={e => setRoomId(e.target.value)}
-            >
-                <option>Inget rum</option>
-                {
-                    rooms.map(room => {
-                        return (
-                            <option key={room.id} value={room.id}>{room.name}</option>
-                        )
-                    })
-                }
-            </select>
-
-
-            <button onClick={() => sendPost(user, post, roomId)}>Send</button>
-            <br /><br />
-
             <AddRoom
-                addRoom={addRoom}
+                connection={connection}
                 newRoom={newRoom}
                 setNewRoom={setNewRoom}
             />
 
-            <div className='posts'>
-                {posts.length > 0 && posts.map((post, index) => {
-                    return (
-                        <div className='post' key={index}> {/* Byt till ID när det är fixat */}
-                            <div>"Picture"</div>
-                            <h3>{post.user}</h3>
-                            <p>{post.date}</p>
-                            <p>{post.message}</p>
-                        </div>
-                    )
-                })}
-            </div>
+            <Posts
+                posts={posts}
+            />
         </>
     )
 }

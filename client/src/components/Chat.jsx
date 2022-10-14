@@ -10,13 +10,13 @@ function Chat() {
     const [post, setPost] = useState('');
     const [posts, setPosts] = useState([]);
     const [rooms, setRooms] = useState([]);
-    const [room, setRoom] = useState(0);
+    const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
 
 
     const sendPost = async (user, message, roomId) => {
         try {
-            await connection.invoke('SendPost', { user, message, roomId: parseInt(roomId) })
+            await connection.invoke('SendPost', { user, message, roomId })
         } catch (error) {
             console.log(error);
         }
@@ -81,8 +81,9 @@ function Chat() {
 
             <select
                 name="room"
-                onChange={e => setRoom(e.target.value)}
+                onChange={e => setRoomId(e.target.value)}
             >
+                <option>Inget rum</option>
                 {
                     rooms.map(room => {
                         return (
@@ -93,7 +94,7 @@ function Chat() {
             </select>
 
 
-            <button onClick={() => sendPost(user, post, room)}>Send</button>
+            <button onClick={() => sendPost(user, post, roomId)}>Send</button>
             <br /><br />
 
             <AddRoom

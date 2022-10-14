@@ -1,6 +1,7 @@
 import React from 'react'
+import { addRoom } from '../service/room'
 
-function AddRoom({ addRoom, newRoom, setNewRoom }) {
+function AddRoom({ connection, newRoom, setNewRoom }) {
     return (
         <>
             <input
@@ -9,7 +10,7 @@ function AddRoom({ addRoom, newRoom, setNewRoom }) {
                 onChange={e => setNewRoom(e.target.value)}
             />
 
-            <button onClick={() => addRoom(newRoom)}>Lägg till rum</button>
+            <button onClick={() => addRoom(connection, newRoom)}>Lägg till rum</button>
         </>
     )
 }

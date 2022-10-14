@@ -20,6 +20,21 @@ export const startConnection = async () => {
     try {
         connection.start().then(() => {
             console.log("Connection started");
+
+            (async () => {
+                if (!connection._connectionStarted) { //guard clause
+                    console.error('No SignalR Connection');
+                    return;
+                }
+                try {
+
+                    await connection.send('SendRooms');
+                }
+                catch (err) {
+                    console.error("active connection but sending error ", err);
+                }
+            })();
+
         })
     } catch (error) {
         console.log("catch", error);

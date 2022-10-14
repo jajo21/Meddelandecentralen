@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using MassTransit;
 using Microsoft.AspNetCore.SignalR;
 
 namespace ChatAPI.Hubs
@@ -7,11 +8,10 @@ namespace ChatAPI.Hubs
     {
         private static List<Room> _rooms = new()
         {
-            new Room {Id=0, Name = "Alla"},
-            new Room {Id=1, Name = "Allmänt utrymme"},
-            new Room {Id=2, Name = "Poolen"},
-            new Room {Id=3, Name = "Baksidan"},
-            new Room {Id=4, Name = "Rum 1"},
+            new Room {Id= NewId.Next().ToString(), Name = "Allmänt utrymme"},
+            new Room {Id= NewId.Next().ToString(), Name = "Poolen"},
+            new Room {Id= NewId.Next().ToString(), Name = "Baksidan"},
+            new Room {Id= NewId.Next().ToString(), Name = "Rum 1"},
         };
 
         public static List<Room> rooms
@@ -41,6 +41,7 @@ namespace ChatAPI.Hubs
         public async Task SendPost(Post post)
         {
             /* var date = DateTime.Now.ToString("yyyy'-'MM'-'dd' 'HH':'mm"); */
+            post.Id = NewId.Next().ToString();
             post.Date = DateTime.Now;
 
             await Clients.All.SendAsync("ReceivePost", post);
@@ -54,7 +55,7 @@ namespace ChatAPI.Hubs
         {
             /* var nameTaken = rooms.FirstOrDefault(r => r.Name == room.Name);
             if (nameTaken != null) throw new Exception("Rummet finns redan"); */
-            room.Id = rooms.Count + 1;
+            room.Id = NewId.Next().ToString();
             rooms.Add(room);
             await Clients.All.SendAsync("RecieveRooms", rooms);
         }

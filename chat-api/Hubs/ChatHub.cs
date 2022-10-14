@@ -21,12 +21,12 @@ namespace ChatAPI.Hubs
             set { _rooms = value; }
         }
 
-        /*         private static List<Post> _posts = new();
-                public static List<Post> posts
-                {
-                    get { return _posts; }
-                    set { _posts = value; }
-                } */
+        private static List<Post> _posts = new();
+        public static List<Post> posts
+        {
+            get { return _posts; }
+            set { _posts = value; }
+        }
 
         /*         public ChatHub(List<Room> Rooms)
                 {
@@ -39,19 +39,31 @@ namespace ChatAPI.Hubs
                     _roomRepository = roomRepository;
                 } */
 
+        public async Task SendPosts()
+        {
+            await Clients.Caller.SendAsync("SendPosts", posts);
+        }
+        public async Task SendRooms()
+        {
+            await Clients.Caller.SendAsync("SendRooms", rooms);
+        }
+
         public async Task SendPost(Post post)
         {
             /* var date = DateTime.Now.ToString("yyyy'-'MM'-'dd' 'HH':'mm"); */
             post.Id = NewId.Next().ToString();
             post.Date = DateTime.Now;
-
-            await Clients.All.SendAsync("ReceivePost", post);
+            posts.Add(post);
+            await Clients.All.SendAsync("ReceivePosts", posts);
         }
 
-        public async Task SendRooms()
+        public async Task DeletePost(string id) // Behöver den en egen model?
         {
-            await Clients.Caller.SendAsync("SendRooms", rooms);
+            var post = posts.FirstOrDefault(p => p.Id == id);
+            if (post != null) posts.Remove(post);
+            await Clients.All.SendAsync("RecieveNewPosts", posts);
         }
+
         public async Task AddRoom(Room room)
         {
             /* var nameTaken = rooms.FirstOrDefault(r => r.Name == room.Name);

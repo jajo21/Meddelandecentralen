@@ -27,8 +27,8 @@ export const startConnection = async () => {
                     return;
                 }
                 try {
-
                     await connection.send('SendRooms');
+                    await connection.send('SendPosts');
                 }
                 catch (err) {
                     console.error("active connection but sending error ", err);

@@ -33,11 +33,18 @@ function Chat() {
                     setRooms(rooms);
                 });
 
-                connection.on('ReceivePost', (postInfo) => {
-                    console.log("postInfo", postInfo);
-                    const postsArray = posts.concat([postInfo]);
-                    console.log("postArray", postsArray);
-                    setPosts(postsArray);
+                connection.on('SendPosts', (posts) => {
+                    console.log(posts);
+                    setPosts(posts);
+                });
+
+                connection.on('ReceivePosts', (posts) => {
+                    console.log(posts);
+                    setPosts(posts);
+                });
+                connection.on('RecieveNewPosts', (posts) => {
+                    console.log(posts);
+                    setPosts(posts);
                 });
 
                 connection.on('RecieveRooms', (rooms) => {
@@ -47,7 +54,7 @@ function Chat() {
             }
         }
         connectionOn();
-    }, [connection, posts])
+    }, [connection])
 
     return (
         <>
@@ -65,9 +72,11 @@ function Chat() {
                 connection={connection}
                 newRoom={newRoom}
                 setNewRoom={setNewRoom}
+                rooms={rooms}
             />
 
             <Posts
+                connection={connection}
                 posts={posts}
             />
         </>

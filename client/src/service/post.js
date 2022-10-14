@@ -5,3 +5,11 @@ export const sendPost = async (connection, user, message, roomId) => {
         console.log(error);
     }
 }
+
+export const deletePost = async (connection, roomId) => {
+    try {
+        await connection.invoke('DeletePost', roomId)
+    } catch (error) {
+        console.log(error);
+    }
+}

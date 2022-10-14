@@ -23,6 +23,8 @@ builder.Services.AddSignalR(o =>
     }
 });
 
+/* builder.Services.AddScoped<IRoomRepository, MockRoomRepository>(); */
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

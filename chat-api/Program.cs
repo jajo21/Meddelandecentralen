@@ -1,8 +1,7 @@
 using ChatAPI.Hubs;
+using ChatAPI.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
 
 builder.Services.AddControllers();
 
@@ -23,10 +22,9 @@ builder.Services.AddSignalR(o =>
     }
 });
 
-/* builder.Services.AddScoped<IRoomRepository, MockRoomRepository>(); */
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<IPostRepository, PostRepository>();
 
-
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

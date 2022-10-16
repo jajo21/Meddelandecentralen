@@ -14,6 +14,7 @@ function Chat() {
     const [rooms, setRooms] = useState([]);
     const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         if (connection === null) {
@@ -41,6 +42,7 @@ function Chat() {
                 connection.on('ReceivePosts', (posts) => {
                     console.log(posts);
                     setPosts(posts);
+                    /* setPosts(prevState => [...prevState, post]); // Borde man göra såhär istället? Spara array i klientgränssnittet för att få bättre prestandA?*/
                 });
                 connection.on('RecieveNewPosts', (posts) => {
                     console.log(posts);
@@ -50,6 +52,10 @@ function Chat() {
                 connection.on('RecieveRooms', (rooms) => {
                     console.log(rooms);
                     setRooms(rooms)
+                });
+                connection.on('RecieveError', (error) => {
+                    console.log(error);
+                    setError(error);
                 });
             }
         }
@@ -72,7 +78,8 @@ function Chat() {
                 connection={connection}
                 newRoom={newRoom}
                 setNewRoom={setNewRoom}
-                rooms={rooms}
+                error={error}
+                setError={setError}
             />
 
             <Posts

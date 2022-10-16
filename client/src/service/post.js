@@ -1,14 +1,14 @@
-export const sendPost = async (connection, user, message, roomId) => {
+export const addPost = async (connection, user, message, roomId) => {
     try {
-        await connection.invoke('SendPost', { user, message, roomId })
+        await connection.invoke('AddPost', { user, message, roomId })
     } catch (error) {
         console.log(error);
     }
 }
 
-export const deletePost = async (connection, roomId) => {
+export const deletePost = async (connection, postId) => {
     try {
-        await connection.invoke('DeletePost', roomId)
+        await connection.invoke('DeletePost', postId)
     } catch (error) {
         console.log(error);
     }

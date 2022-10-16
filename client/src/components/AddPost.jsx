@@ -1,5 +1,5 @@
 import React from 'react'
-import { sendPost } from '../service/post'
+import { addPost } from '../service/post'
 
 function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, rooms }) {
     return (
@@ -31,7 +31,7 @@ function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, 
                 }
             </select>
 
-            <button onClick={() => sendPost(connection, user, post, roomId)}>Send</button>
+            <button onClick={() => addPost(connection, user, post, roomId)}>Send</button>
             <br /><br />
         </>
     )

@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using ChatAPI.Repositories;
 using MassTransit;
 using Microsoft.AspNetCore.SignalR;
 
@@ -6,71 +7,54 @@ namespace ChatAPI.Hubs
 {
     public class ChatHub : Hub
     {
-        private static List<Room> _rooms = new()
-        {
-            /* new Room {Id= NewId.Next().ToString(), Name = "Inget rum"}, */
-            new Room {Id= NewId.Next().ToString(), Name = "Allmänt utrymme"},
-            new Room {Id= NewId.Next().ToString(), Name = "Poolen"},
-            new Room {Id= NewId.Next().ToString(), Name = "Baksidan"},
-            new Room {Id= NewId.Next().ToString(), Name = "Rum 1"},
-        };
+        private IRoomRepository _roomRepository;
+        private IPostRepository _postRepository;
 
-        public static List<Room> rooms
+        public ChatHub(IRoomRepository roomRepository, IPostRepository postRepository)
         {
-            get { return _rooms; }
-            set { _rooms = value; }
+            _roomRepository = roomRepository;
+            _postRepository = postRepository;
         }
-
-        private static List<Post> _posts = new();
-        public static List<Post> posts
-        {
-            get { return _posts; }
-            set { _posts = value; }
-        }
-
-        /*         public ChatHub(List<Room> Rooms)
-                {
-                    _rooms = Rooms;
-                } */
-        /*         private IRoomRepository _roomRepository;
-
-                public ChatHub(IRoomRepository roomRepository)
-                {
-                    _roomRepository = roomRepository;
-                } */
 
         public async Task SendPosts()
         {
-            await Clients.Caller.SendAsync("SendPosts", posts);
+            await Clients.Caller.SendAsync("SendPosts", _postRepository.AllPosts);
         }
         public async Task SendRooms()
         {
-            await Clients.Caller.SendAsync("SendRooms", rooms);
+            await Clients.Caller.SendAsync("SendRooms", _roomRepository.AllRooms);
         }
 
-        public async Task SendPost(Post post)
+        public async Task AddPost(Post post)
         {
-            /* var date = DateTime.Now.ToString("yyyy'-'MM'-'dd' 'HH':'mm"); */
-            post.Id = NewId.Next().ToString();
-            post.Date = DateTime.Now;
-            posts.Add(post);
-            await Clients.All.SendAsync("ReceivePosts", posts);
+            _postRepository.AddPost(post);
+            await Clients.All.SendAsync("ReceivePosts", _postRepository.AllPosts);
         }
 
         public async Task DeletePost(string id) // Behöver den en egen model?
         {
-            var post = posts.FirstOrDefault(p => p.Id == id);
-            if (post != null) posts.Remove(post);
-            await Clients.All.SendAsync("RecieveNewPosts", posts);
+            try
+            {
+                _postRepository.DeletePost(id);
+                await Clients.All.SendAsync("RecieveNewPosts", _postRepository.AllPosts);
+            }
+            catch (Exception error)
+            {
+                await Clients.Caller.SendAsync("RecieveError", error.Message);
+            }
         }
 
         public async Task AddRoom(Room room)
         {
-            /* var nameTaken = rooms.FirstOrDefault(r => r.Name == room.Name);
-            if (nameTaken != null) throw new Exception("Rummet finns redan"); */
-            room.Id = NewId.Next().ToString();
-            rooms.Add(room);
-            await Clients.All.SendAsync("RecieveRooms", rooms);
+            try
+            {
+                _roomRepository.AddRoom(room);
+                await Clients.All.SendAsync("RecieveRooms", _roomRepository.AllRooms);
+            }
+            catch (Exception error)
+            {
+                await Clients.Caller.SendAsync("RecieveError", error.Message);
+            }
         }
     }
 }

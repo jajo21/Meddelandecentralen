@@ -27,6 +27,7 @@ export const startConnection = async () => {
             try {
                 await connection.send('SendRooms');
                 await connection.send('SendPosts');
+                await connection.send('SendComments');
             }
             catch (err) {
                 console.error("Connection established but another error occured: ", err);

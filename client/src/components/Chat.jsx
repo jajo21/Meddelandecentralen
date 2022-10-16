@@ -14,6 +14,10 @@ function Chat() {
     const [rooms, setRooms] = useState([]);
     const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
+    const [comments, setComments] = useState([]);
+    const [comment, setComment] = useState('');
+
+
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -39,6 +43,11 @@ function Chat() {
                     setPosts(posts);
                 });
 
+                connection.on('SendComments', (comments) => {
+                    console.log(comments);
+                    setComments(comments);
+                });
+
                 connection.on('ReceivePosts', (posts) => {
                     console.log(posts);
                     setPosts(posts);
@@ -48,6 +57,11 @@ function Chat() {
                     console.log(posts);
                     setPosts(posts);
                 });
+
+                connection.on('RecieveComments', comments => {
+                    console.log(comments);
+                    setComments(comments);
+                })
 
                 connection.on('RecieveRooms', (rooms) => {
                     console.log(rooms);

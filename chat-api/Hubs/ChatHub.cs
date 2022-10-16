@@ -9,11 +9,16 @@ namespace ChatAPI.Hubs
     {
         private IRoomRepository _roomRepository;
         private IPostRepository _postRepository;
+        private ICommentRepository _commentRepository;
 
-        public ChatHub(IRoomRepository roomRepository, IPostRepository postRepository)
+        public ChatHub(
+            IRoomRepository roomRepository,
+            IPostRepository postRepository,
+            ICommentRepository commentRepository)
         {
             _roomRepository = roomRepository;
             _postRepository = postRepository;
+            _commentRepository = commentRepository;
         }
 
         public async Task SendPosts()
@@ -23,6 +28,11 @@ namespace ChatAPI.Hubs
         public async Task SendRooms()
         {
             await Clients.Caller.SendAsync("SendRooms", _roomRepository.AllRooms);
+        }
+
+        public async Task SendComments()
+        {
+            await Clients.Caller.SendAsync("SendComments", _commentRepository.AllComments);
         }
 
         public async Task AddPost(Post post)
@@ -50,6 +60,19 @@ namespace ChatAPI.Hubs
             {
                 _roomRepository.AddRoom(room);
                 await Clients.All.SendAsync("RecieveRooms", _roomRepository.AllRooms);
+            }
+            catch (Exception error)
+            {
+                await Clients.Caller.SendAsync("RecieveError", error.Message);
+            }
+        }
+
+        public async Task AddComment(Comment comment)
+        {
+            try
+            {
+                _commentRepository.AddComment(comment);
+                await Clients.All.SendAsync("RecieveComments", _commentRepository.AllComments);
             }
             catch (Exception error)
             {

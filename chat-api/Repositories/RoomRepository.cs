@@ -7,7 +7,7 @@ namespace ChatAPI.Repositories
     {
         private static List<Room> _rooms = new()
         {
-            /* new Room {Id= NewId.Next().ToString(), Name = "Inget rum"}, */
+            new Room {Id= NewId.Next().ToString(), Name = "Alla rum"},
             new Room {Id= NewId.Next().ToString(), Name = "Allmänt utrymme"},
             new Room {Id= NewId.Next().ToString(), Name = "Poolen"},
             new Room {Id= NewId.Next().ToString(), Name = "Baksidan"},

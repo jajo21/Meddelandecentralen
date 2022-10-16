@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { addPost } from '../service/post'
 
 function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, rooms }) {
+
+    useEffect(() => {
+        if (rooms.length > 0) {
+            setRoomId(rooms[0].id)
+        }
+    }, [rooms]);
+
     return (
         <>
             <br />
@@ -21,13 +28,11 @@ function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, 
                 name="room"
                 onChange={e => setRoomId(e.target.value)}
             >
-                <option value={null}>Inget rum</option>
-                {
-                    rooms.map(room => {
-                        return (
-                            <option key={room.id} value={room.id}>{room.name}</option>
-                        )
-                    })
+                {rooms.map(room => {
+                    return (
+                        <option key={room.id} value={room.id}>{room.name}</option>
+                    )
+                })
                 }
             </select>
 

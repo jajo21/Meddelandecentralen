@@ -8,37 +8,33 @@ export const startConnection = async () => {
         .build();
 
     connection.onreconnecting((error) => {
-        console.log(error);
+        console.log("onreconnecting", error);
     });
 
     // show that we're reconnected
     connection.onreconnected((error) => {
-
-        console.log(error, "reconnected")
+        console.log("Reconnected")
     });
 
-    try {
-        connection.start().then(() => {
-            console.log("Connection started");
+    connection.start().then(() => {
+        console.log("Connection started");
 
-            (async () => {
-                if (!connection._connectionStarted) { //guard clause
-                    console.error('No SignalR Connection');
-                    return;
-                }
-                try {
-                    await connection.send('SendRooms');
-                    await connection.send('SendPosts');
-                }
-                catch (err) {
-                    console.error("active connection but sending error ", err);
-                }
-            })();
+        (async () => {
+            if (!connection._connectionStarted) { //guard clause
+                console.error('No connection to SignalR');
+                return;
+            }
+            try {
+                await connection.send('SendRooms');
+                await connection.send('SendPosts');
+            }
+            catch (err) {
+                console.error("Connection established but another error occured: ", err);
+            }
+        })();
 
-        })
-    } catch (error) {
-        console.log("catch", error);
-    }
+    })
+
 
     return connection;
 }

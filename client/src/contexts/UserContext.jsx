@@ -4,7 +4,7 @@ import { getUser, removeUser, saveUser } from '../service/user';
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState(getUser());
     const [hasUser, setHasUser] = useState(false);
 
     useEffect(() => {

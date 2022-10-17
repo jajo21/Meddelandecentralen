@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import ConnectionContext from '../contexts/ConnectionContext'
 import { deletePost } from '../service/post'
 import Comments from './Comments'
 
-function Posts({ connection, posts }) {
+function Posts() {
+    const { connection, posts } = useContext(ConnectionContext);
     return (
         <div className='posts'>
             {posts.length > 0 && posts.map((post) => {

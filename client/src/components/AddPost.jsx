@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { addPost } from '../service/post'
+import UserContext from '../contexts/UserContext';
+import ConnectionContext from '../contexts/ConnectionContext';
 
-function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, rooms }) {
+function AddPost({ post, roomId, setPost, setRoomId }) {
+    const { user } = useContext(UserContext);
+    const { connection, rooms } = useContext(ConnectionContext);
 
     useEffect(() => {
         if (rooms.length > 0) {
@@ -12,12 +16,6 @@ function AddPost({ connection, user, post, roomId, setUser, setPost, setRoomId, 
     return (
         <>
             <br />
-            <input
-                type="text"
-                value={user}
-                onChange={e => setUser(e.target.value)}
-            />
-
             <input
                 type="text"
                 value={post}

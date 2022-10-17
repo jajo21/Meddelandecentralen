@@ -38,24 +38,27 @@ export function ConnectionProvider({ children }) {
                     setComments(comments);
                 });
 
-                connection.on('ReceivePosts', (posts) => {
-                    console.log(posts);
-                    setPosts(posts);
-                    /* setPosts(prevState => [...prevState, post]); // Borde man göra såhär istället? Spara array i klientgränssnittet för att få bättre prestandA?*/
-                });
-                connection.on('RecieveNewPosts', (posts) => {
-                    console.log(posts);
-                    setPosts(posts);
+                connection.on('ReceivePosts', (post) => {
+                    console.log(post);
+                    setPosts(prevState => [...prevState, post]);
                 });
 
-                connection.on('RecieveComments', comments => {
-                    console.log(comments);
-                    setComments(comments);
+                connection.on('RecievePostId', (id) => {
+                    setPosts(prevState => {
+                        return prevState.filter(post => {
+                            return post.id !== id;
+                        })
+                    });
+                });
+
+                connection.on('RecieveComments', comment => {
+                    console.log(comment);
+                    setComments(prevState => [...prevState, comment]);
                 })
 
-                connection.on('RecieveRooms', (rooms) => {
-                    console.log(rooms);
-                    setRooms(rooms)
+                connection.on('RecieveRooms', (room) => {
+                    console.log(room);
+                    setRooms(prevState => [...prevState, room])
                 });
 
                 connection.on('RecieveError', (error) => {

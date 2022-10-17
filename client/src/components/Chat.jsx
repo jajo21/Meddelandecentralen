@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { getUser } from '../service/user';
 import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';
@@ -13,6 +13,7 @@ function Chat() {
 
     return (
         <>
+            <h2>Användare: {getUser()}</h2> {/* State user istället? */}
             <Logout />
             <AddPost
                 post={post}

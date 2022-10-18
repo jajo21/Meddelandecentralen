@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
-import { deletePost } from '../service/post'
+import { deletePost } from '../services/post'
 import Comments from './Comments'
 
 function Posts() {

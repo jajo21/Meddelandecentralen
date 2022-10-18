@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext';
-import { addRoom } from '../service/room'
+import { addRoom } from '../services/room'
 
 function AddRoom({ newRoom, setNewRoom }) {
     const { connection, error, setError } = useContext(ConnectionContext);

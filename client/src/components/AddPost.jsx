@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { addPost } from '../service/post'
+import { addPost } from '../services/post'
 import UserContext from '../contexts/UserContext';
 import ConnectionContext from '../contexts/ConnectionContext';
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getUser } from '../service/user';
+import { getUser } from '../services/user';
 import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
 import { deletePost } from '../services/post'
 import Comments from './Comments'
@@ -15,8 +15,9 @@ function Posts() {
                         <h3>{post.user}</h3>
                         <p>{post.date}</p>
                         <p>{post.message}</p>
-                        <button onClick={() => console.log("Visa kommentarer")}>Visa kommentarer</button>
-                        <Comments />
+                        <Comments
+                            postId={post.id}
+                        />
                     </div>
                 )
             })}

@@ -56,6 +56,14 @@ export function ConnectionProvider({ children }) {
                     setComments(prevState => [...prevState, comment]);
                 })
 
+                connection.on('RecieveCommentId', id => {
+                    setComments(prevState => {
+                        return prevState.filter(comment => {
+                            return comment.id !== id;
+                        })
+                    });
+                })
+
                 connection.on('RecieveRoom', (room) => {
                     console.log(room);
                     setRooms(prevState => [...prevState, room])

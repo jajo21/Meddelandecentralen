@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using ChatAPI.Resources;
 
 namespace ChatAPI.Repositories
 {
@@ -6,6 +7,6 @@ namespace ChatAPI.Repositories
     {
         List<Post> AllPosts { get; }
         void AddPost(Post post);
-        void DeletePost(string id);
+        void DeletePost(DeleteRequest delete);
     }
 }

@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using ChatAPI.Resources;
 using MassTransit;
 
 namespace ChatAPI.Repositories
@@ -15,9 +16,9 @@ namespace ChatAPI.Repositories
             _comments.Add(comment);
         }
 
-        public void DeleteComment(string id)
+        public void DeleteComment(DeleteRequest delete)
         {
-            var comment = _comments.FirstOrDefault(c => c.Id == id);
+            var comment = _comments.FirstOrDefault(c => c.Id == delete.Id);
             if (comment == null) throw new Exception("Hittar inte kommentar");
             _comments.Remove(comment);
         }

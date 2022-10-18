@@ -43,10 +43,10 @@ export function ConnectionProvider({ children }) {
                     setPosts(prevState => [...prevState, post]);
                 });
 
-                connection.on('RecievePostId', (id) => {
+                connection.on('RecievePostId', response => {
                     setPosts(prevState => {
                         return prevState.filter(post => {
-                            return post.id !== id;
+                            return post.id !== response.id;
                         })
                     });
                 });
@@ -56,10 +56,10 @@ export function ConnectionProvider({ children }) {
                     setComments(prevState => [...prevState, comment]);
                 })
 
-                connection.on('RecieveCommentId', id => {
+                connection.on('RecieveCommentId', response => {
                     setComments(prevState => {
                         return prevState.filter(comment => {
-                            return comment.id !== id;
+                            return comment.id !== response.id;
                         })
                     });
                 })

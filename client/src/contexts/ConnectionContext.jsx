@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
-import { startConnection } from '../service/connection';
+import { startConnection } from '../services/connection';
 
 const ConnectionContext = createContext();
 

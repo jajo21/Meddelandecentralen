@@ -1,5 +1,5 @@
 import React from 'react'
-import { addComment } from '../service/comment'
+import { addComment } from '../services/comment'
 
 function AddComment() {
     return (

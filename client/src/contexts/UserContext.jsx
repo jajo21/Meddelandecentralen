@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { getUser, removeUser, saveUser } from '../service/user';
+import { getUser, removeUser, saveUser } from '../services/user';
 
 const UserContext = createContext();
 

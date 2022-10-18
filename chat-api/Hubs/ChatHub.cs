@@ -79,5 +79,18 @@ namespace ChatAPI.Hubs
                 await Clients.Caller.SendAsync("RecieveError", error.Message);
             }
         }
+
+        public async Task DeleteComment(string id) // Behöver den en egen model?
+        {
+            try
+            {
+                _commentRepository.DeleteComment(id);
+                await Clients.All.SendAsync("RecieveCommentId", id);
+            }
+            catch (Exception error)
+            {
+                await Clients.Caller.SendAsync("RecieveError", error.Message);
+            }
+        }
     }
 }

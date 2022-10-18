@@ -38,7 +38,7 @@ namespace ChatAPI.Hubs
         public async Task AddPost(Post post)
         {
             _postRepository.AddPost(post);
-            await Clients.All.SendAsync("ReceivePosts", post);
+            await Clients.All.SendAsync("ReceivePost", post);
         }
 
         public async Task DeletePost(string id) // Behöver den en egen model?
@@ -59,7 +59,7 @@ namespace ChatAPI.Hubs
             try
             {
                 _roomRepository.AddRoom(room);
-                await Clients.All.SendAsync("RecieveRooms", room);
+                await Clients.All.SendAsync("RecieveRoom", room);
             }
             catch (Exception error)
             {
@@ -72,7 +72,7 @@ namespace ChatAPI.Hubs
             try
             {
                 _commentRepository.AddComment(comment);
-                await Clients.All.SendAsync("RecieveComments", comment);
+                await Clients.All.SendAsync("RecieveComment", comment);
             }
             catch (Exception error)
             {

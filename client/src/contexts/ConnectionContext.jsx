@@ -38,7 +38,7 @@ export function ConnectionProvider({ children }) {
                     setComments(comments);
                 });
 
-                connection.on('ReceivePosts', (post) => {
+                connection.on('ReceivePost', (post) => {
                     console.log(post);
                     setPosts(prevState => [...prevState, post]);
                 });
@@ -51,12 +51,12 @@ export function ConnectionProvider({ children }) {
                     });
                 });
 
-                connection.on('RecieveComments', comment => {
+                connection.on('RecieveComment', comment => {
                     console.log(comment);
                     setComments(prevState => [...prevState, comment]);
                 })
 
-                connection.on('RecieveRooms', (room) => {
+                connection.on('RecieveRoom', (room) => {
                     console.log(room);
                     setRooms(prevState => [...prevState, room])
                 });

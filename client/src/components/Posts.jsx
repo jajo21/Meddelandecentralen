@@ -8,16 +8,22 @@ function Posts() {
     return (
         <div className='posts'>
             {posts.length > 0 && posts.map((post) => {
+                const date = new Date(post.date)
                 return (
                     <div className='post' key={post.id}>
-                        <div>"Picture"</div>
-                        <button onClick={() => deletePost(connection, post.id)}>Ta bort inlägg</button>
-                        <h3>{post.user}</h3>
-                        <p>{post.date}</p>
+                        <hr />
+                        <div>
+                            <p>Bild |
+                                | {post.user} |
+                                | {date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })} |
+                                | <button onClick={() => deletePost(connection, post.id)}>Ta bort inlägg</button>
+                            </p>
+                        </div>
                         <p>{post.message}</p>
                         <Comments
                             postId={post.id}
                         />
+                        <hr />
                     </div>
                 )
             })}

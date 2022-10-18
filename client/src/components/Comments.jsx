@@ -15,10 +15,15 @@ function Comments({ postId }) {
                     <div className='comments'>
                         {comments.length > 0 &&
                             comments.map(comment => {
+                                const date = new Date(comment.date)
                                 if (comment.postId === postId) {
                                     return (
                                         <div className='comment' key={comment.id}>
-                                            <p>{comment.user} : {comment.date}</p>
+                                            <p>BILD |
+                                                | {comment.user} |
+                                                | {date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })} |
+                                                | <button>Ta bort kommentar</button>
+                                            </p>
                                             <p>{comment.message}</p>
                                         </div>
                                     )

@@ -31,8 +31,6 @@ function Comments({ postId }) {
                     />
                 </>
             }
-
-
         </>
     )
 }

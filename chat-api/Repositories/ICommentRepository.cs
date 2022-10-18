@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using ChatAPI.Resources;
 
 namespace ChatAPI.Repositories
 {
@@ -6,6 +7,6 @@ namespace ChatAPI.Repositories
     {
         List<Comment> AllComments { get; }
         void AddComment(Comment comment);
-        void DeleteComment(string id);
+        void DeleteComment(DeleteRequest delete);
     }
 }

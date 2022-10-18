@@ -6,9 +6,9 @@ export const addComment = async (connection, user, message, postId) => {
     }
 }
 
-export const deleteComment = async (connection, commentId) => {
+export const deleteComment = async (connection, id) => {
     try {
-        await connection.invoke('DeleteComment', commentId)
+        await connection.invoke('DeleteComment', { id })
     } catch (error) {
         console.log(error);
     }

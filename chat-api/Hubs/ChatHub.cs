@@ -1,5 +1,6 @@
 using ChatAPI.Models;
 using ChatAPI.Repositories;
+using ChatAPI.Resources;
 using MassTransit;
 using Microsoft.AspNetCore.SignalR;
 
@@ -41,12 +42,12 @@ namespace ChatAPI.Hubs
             await Clients.All.SendAsync("ReceivePost", post);
         }
 
-        public async Task DeletePost(string id) // Behöver den en egen model?
+        public async Task DeletePost(DeleteRequest delete) // Behöver den en egen model?
         {
             try
             {
-                _postRepository.DeletePost(id);
-                await Clients.All.SendAsync("RecievePostId", id);
+                _postRepository.DeletePost(delete);
+                await Clients.All.SendAsync("RecievePostId", delete);
             }
             catch (Exception error)
             {
@@ -80,12 +81,12 @@ namespace ChatAPI.Hubs
             }
         }
 
-        public async Task DeleteComment(string id) // Behöver den en egen model?
+        public async Task DeleteComment(DeleteRequest delete) // Behöver den en egen model?
         {
             try
             {
-                _commentRepository.DeleteComment(id);
-                await Clients.All.SendAsync("RecieveCommentId", id);
+                _commentRepository.DeleteComment(delete);
+                await Clients.All.SendAsync("RecieveCommentId", delete);
             }
             catch (Exception error)
             {

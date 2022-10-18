@@ -1,4 +1,5 @@
 using ChatAPI.Models;
+using ChatAPI.Resources;
 using MassTransit;
 
 namespace ChatAPI.Repositories
@@ -15,9 +16,9 @@ namespace ChatAPI.Repositories
             _posts.Add(post);
         }
 
-        public void DeletePost(string id)
+        public void DeletePost(DeleteRequest delete)
         {
-            var post = _posts.FirstOrDefault(p => p.Id == id);
+            var post = _posts.FirstOrDefault(p => p.Id == delete.Id);
             if (post == null) throw new Exception("Hittar inte inlägget");
             _posts.Remove(post);
         }

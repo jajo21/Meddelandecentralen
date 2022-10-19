@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
 import UserContext from '../contexts/UserContext';
-import { deleteComment } from '../services/comment';
 import AddComment from './AddComment'
+import DeleteComment from './DeleteComment';
 
 function Comments({ postId }) {
     const { connection, comments } = useContext(ConnectionContext);
@@ -24,7 +24,7 @@ function Comments({ postId }) {
                                             <p>BILD |
                                                 | {comment.user} |
                                                 | {date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })} |
-                                                | {user === comment.user && <button onClick={() => deleteComment(connection, comment.id)}>Ta bort kommentar</button>}
+                                                | {user === comment.user && <DeleteComment connection={connection} commentId={comment.id} />}
                                             </p>
                                             <p>{comment.message}</p>
                                         </div>

@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext'
 import { deletePost } from '../services/post'
 import { deleteComment } from '../services/comment'
 import Comments from './Comments'
+import DeletePost from './DeletePost'
 
 function Posts() {
     const { connection, posts, comments } = useContext(ConnectionContext);
@@ -19,15 +20,7 @@ function Posts() {
                             <p>Bild |
                                 | {post.user} |
                                 | {date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })} |
-                                | {user === post.user && <button onClick={() => {
-                                    deletePost(connection, post.id)
-                                    comments.map(comment => {
-                                        if (comment.postId === post.id) {
-                                            deleteComment(connection, comment.id);
-                                        }
-                                    });
-                                }
-                                }>Ta bort inlägg</button>}
+                                | {user === post.user && <DeletePost connection={connection} postId={post.id} comments={comments} />}
                             </p>
                         </div>
                         <p>{post.message}</p>

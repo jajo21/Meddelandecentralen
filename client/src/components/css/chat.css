@@ -4,10 +4,10 @@
 
 .welcome-user {
     display: flex;
-    justify-content: space-around;
+    justify-content: left;
     align-items: center;
     padding-bottom: 10px;
-    border-bottom: 1px solid rgb(39, 165, 255);
+    border-bottom: 1px solid rgb(195, 195, 195);
     margin-bottom: 10px;
 }
 
@@ -26,6 +26,7 @@
 }
 
 .welcome {
+    margin-left: 30px;
     font-size: 20px;
 }
 

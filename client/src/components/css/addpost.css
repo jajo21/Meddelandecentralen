@@ -1,0 +1,78 @@
+.add-post {
+    padding: 20px 10px;
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+.add-room-div{
+    display: flex;
+    align-items: center;
+}
+
+.add-post-room {
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.add-post-room option {
+    padding: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.add-room-button-div{
+    margin-left: 10px;
+}
+.add-room-button{
+    font-size: 20px;
+    padding: 3px 8px;
+    border-radius: 8px;
+    border: none;
+    background-color: #1d9bf0;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-room-button:hover {
+    background-color: #1a8fdc;
+    cursor: pointer;
+}
+
+.add-room-button[alert]:hover:after {
+    content: attr(alert);
+    position: absolute;
+    top: 118;
+    left: 200;
+    font-size: 12px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.add-post-textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: 30px;
+    height: auto;
+    padding: 5px;
+    border-radius: 8px;
+    overflow: hidden;
+    border-color: rgb(224, 222, 222);
+    background-color: rgb(236, 236, 236);
+    margin-top: 5px;
+}
+
+
+.add-post-button {
+    background-color: #1d9bf0;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.add-post-button:hover {
+    background-color: #1a8fdc;
+    cursor: pointer;
+}

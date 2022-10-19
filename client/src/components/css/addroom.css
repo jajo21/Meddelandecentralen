@@ -1,0 +1,53 @@
+.add-room {
+    position: fixed;
+    top: 140;
+    left: 50;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid rgb(224, 222, 222);
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.add-room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.add-room-close {
+    cursor: pointer;
+}
+
+.add-room-close[alert]:hover:after {
+    content: attr(alert);
+    position: absolute;
+    top: 23;
+    left: 205;
+    font-size: 12px;
+    box-sizing: border-box;
+    color: black;
+}
+
+.add-room-input {
+    padding: 5px;
+    border-radius: 8px;
+    background-color: rgb(236, 236, 236);
+    border: 1px solid rgb(224, 222, 222);
+    margin-right: 5px;
+}
+
+.save-room-button {
+    background-color: #1d9bf0;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.save-room-button:hover {
+    background-color: #1a8fdc;
+    cursor: pointer;
+}

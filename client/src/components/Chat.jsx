@@ -38,6 +38,8 @@ function Chat() {
                 <AddRoom
                     newRoom={newRoom}
                     setNewRoom={setNewRoom}
+                    showAddRoom={showAddRoom}
+                    setShowAddRoom={setShowAddRoom}
                 />
             }
 
@@ -45,6 +47,7 @@ function Chat() {
 
             <div className='navbar'>
                 <Logout />
+                <button>Filtrera</button>
                 <button onClick={() => setShowAddPost(!showAddPost)}>Gör inlägg</button>
             </div>
         </div>

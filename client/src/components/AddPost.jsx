@@ -3,6 +3,8 @@ import { addPost } from '../services/post'
 import UserContext from '../contexts/UserContext';
 import ConnectionContext from '../contexts/ConnectionContext';
 
+import './css/addpost.css';
+
 function AddPost({ post, roomId, setPost, setRoomId, showAddRoom, setShowAddRoom }) {
     const { user } = useContext(UserContext);
     const { connection, rooms } = useContext(ConnectionContext);
@@ -15,30 +17,42 @@ function AddPost({ post, roomId, setPost, setRoomId, showAddRoom, setShowAddRoom
     }, [rooms]);
 
     return (
-        <div>
+        <div className='add-post'>
             <div className='post-input'>
-                <input
-                    type="text"
-                    value={post}
-                    onChange={e => setPost(e.target.value)}
-                />
-
-                <select
-                    name="room"
-                    onChange={e => setRoomId(e.target.value)}
-                >
-                    {rooms.map(room => {
-                        return (
-                            <option key={room.id} value={room.id}>{room.name}</option>
-                        )
-                    })
-                    }
-                </select>
-
-                <button onClick={() => setShowAddRoom(!showAddRoom)}>Lägg till rum</button>
+                <div className='add-room-div'>
+                    <select
+                        name="room"
+                        className='add-post-room'
+                        onChange={e => setRoomId(e.target.value)}
+                    >
+                        {rooms.map(room => {
+                            return (
+                                <option key={room.id} value={room.id}>{room.name}</option>
+                            )
+                        })
+                        }
+                    </select>
+                    <div className='add-room-button-div'>
+                        <button
+                            alert='Lägg till rum'
+                            className='add-room-button'
+                            onClick={() => setShowAddRoom(!showAddRoom)}
+                        >+
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <textarea
+                        className='add-post-textarea'
+                        placeholder='Skriv ett inlägg'
+                        type="text"
+                        value={post}
+                        onChange={e => setPost(e.target.value)}
+                    />
+                </div>
             </div>
 
-            <button onClick={() => addPost(connection, user, post, roomId)}>Send</button>
+            <button className='add-post-button' onClick={() => addPost(connection, user, post, roomId)}>Skicka</button>
         </div>
     )
 }

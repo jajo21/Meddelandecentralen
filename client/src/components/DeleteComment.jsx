@@ -1,9 +1,11 @@
 import React from 'react'
 import { deleteComment } from '../services/comment';
 
+import './css/deletecomment.css'
+
 function DeleteComment({ connection, commentId }) {
     return (
-        <button onClick={() => deleteComment(connection, commentId)}>Ta bort kommentar</button>
+        <button alert='Radera kommentar' className='delete-comment' onClick={() => deleteComment(connection, commentId)}>X</button>
     )
 }
 

@@ -1,0 +1,39 @@
+.posts {
+    margin-bottom: 100px;
+}
+
+.post {
+    margin: 10px 0;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(213, 213, 213);
+}
+
+.post-room {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.post-info {
+    display: flex;
+    justify-content: left;
+}
+
+.post-user {
+    font-weight: bold;
+    padding: 4px 4px 4px 10px;
+}
+
+.post-date {
+    color: grey;
+    font-size: 14px;
+    padding: 4.5px 4px 4px 10px;
+}
+
+.post-delete {
+    padding: 4px 4px 4px 10px;
+    margin-left: auto;
+}
+
+.post-message {
+    margin: 0 4px 10px 60px;
+}

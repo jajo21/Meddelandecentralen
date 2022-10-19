@@ -16,10 +16,12 @@ function Chat() {
     const [showAddPost, setShowAddPost] = useState(false);
 
     return (
-        <>
+        <div className='chat'>
             <div className='welcome-user'>
-                <div className='profile-picture'>Profile picture</div>
-                <h2>Välkommen {getUser()}!</h2> {/* State user istället? */}
+                <div className='circle'>
+                    <span className='profile-picture'>Picture</span>
+                </div>
+                <h2 className='welcome'>Välkommen {getUser()}!</h2> {/* State user istället? */}
             </div>
 
             {showAddPost &&
@@ -41,11 +43,11 @@ function Chat() {
 
             <Posts />
 
-            <div>
+            <div className='navbar'>
                 <Logout />
                 <button onClick={() => setShowAddPost(!showAddPost)}>Gör inlägg</button>
             </div>
-        </>
+        </div>
     )
 }
 

@@ -2,9 +2,11 @@ import React from 'react'
 import { deleteComment } from '../services/comment';
 import { deletePost } from '../services/post';
 
+import './css/deletepost.css';
+
 function DeletePost({ connection, postId, comments }) {
     return (
-        <button onClick={() => {
+        <button alert='Radera inlägg' className='delete-button' onClick={() => {
             deletePost(connection, postId)
             comments.map(comment => {
                 if (comment.postId === postId) {
@@ -12,7 +14,7 @@ function DeletePost({ connection, postId, comments }) {
                 }
             });
         }
-        }>Ta bort inlägg</button>
+        }>X</button>
     )
 }
 

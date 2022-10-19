@@ -1,0 +1,42 @@
+.chat {
+    margin: 20px 10px;
+}
+
+.welcome-user {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgb(39, 165, 255);
+    margin-bottom: 10px;
+}
+
+.profile-picture {
+    font-size: 10px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 12px 10px;
+    background: rgb(220, 220, 220);
+    border: 1px solid rgb(87, 87, 87);
+    text-align: center;
+}
+
+.welcome {
+    font-size: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background: whitesmoke;
+    position: fixed;
+    padding: 20px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+}

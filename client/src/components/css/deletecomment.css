@@ -1,0 +1,24 @@
+.delete-comment {
+    margin: 0 0 0 0;
+    background-color: white;
+    padding:2px;
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-comment:hover {
+    transition: all 0.2s ease-out;
+    transform: scale(110%);
+    cursor: pointer;
+}
+
+.delete-comment[alert]:hover:after {
+    content: attr(alert);
+    position: absolute;
+    top: 5;
+    left: -80;
+    font-size: 8px;
+    box-sizing: border-box;
+}

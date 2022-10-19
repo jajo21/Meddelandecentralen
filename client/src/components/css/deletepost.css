@@ -1,0 +1,24 @@
+.delete-button {
+    margin: 0 10px 0 0;
+    background-color: white;
+    padding:2px;
+    border: 0;
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.delete-button:hover {
+    transition: all 0.2s ease-out;
+    transform: scale(110%);
+    cursor: pointer;
+}
+
+.delete-button[alert]:hover:after {
+    content: attr(alert);
+    position: absolute;
+    top: -24;
+    left: -10;
+    font-size: 10px;
+    box-sizing: border-box;
+}

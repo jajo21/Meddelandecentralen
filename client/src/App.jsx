@@ -8,12 +8,14 @@ import Login from './components/Login';
 import { UserProvider } from './contexts/UserContext';
 import { ConnectionProvider } from './contexts/ConnectionContext';
 
+import './app.css';
+
 function App() {
     const { hasUser } = useContext(UserContext);
     return (
-        <>
+        <main>
             {hasUser ? <Chat /> : <Login />}
-        </>
+        </main>
     )
 }
 

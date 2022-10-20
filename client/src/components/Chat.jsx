@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { getUser } from '../services/user';
+
 import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';
+import AddFilter from './AddFilter';
 
 import './css/chat.css';
 
-function Chat({ showAddPost }) {
+function Chat({ showAddPost, showAddFilter, setShowAddFilter }) {
 
     const [post, setPost] = useState('');
     const [roomId, setRoomId] = useState(null);
@@ -39,6 +41,11 @@ function Chat({ showAddPost }) {
                         setShowAddRoom={setShowAddRoom}
                     />
                 }
+
+                <AddFilter
+                    showAddFilter={showAddFilter}
+                    setShowAddFilter={setShowAddFilter}
+                />
 
                 <Posts />
             </div>

@@ -12,13 +12,22 @@ import './app.css';
 function App() {
     const { hasUser } = useContext(UserContext);
     const [showAddPost, setShowAddPost] = useState(false);
+    const [showAddFilter, setShowAddFilter] = useState(false);
     return (
         <>
             {hasUser ?
                 <>
-                    <Navbar setShowAddPost={setShowAddPost} />
+                    <Navbar
+                        setShowAddPost={setShowAddPost}
+                        setShowAddFilter={setShowAddFilter}
+                    />
+
                     <ConnectionProvider>
-                        <Chat showAddPost={showAddPost} />
+                        <Chat
+                            showAddPost={showAddPost}
+                            showAddFilter={showAddFilter}
+                            setShowAddFilter={setShowAddFilter}
+                        />
                     </ConnectionProvider>
                 </>
                 :

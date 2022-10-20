@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
 import Comments from './Comments'
 import DeletePost from './DeletePost'
@@ -8,33 +8,44 @@ import { getRoomName } from '../services/room'
 import './css/posts.css';
 
 function Posts() {
-    const { user, connection, posts, comments, rooms } = useContext(ConnectionContext);
+    const { user, connection, posts, comments, rooms, postFilter } = useContext(ConnectionContext);
+
+    const renderPosts = (date, postId, rooms, postRoomId, postUser, postMessage, user) => {
+        return (
+            <div className='post' key={postId}>
+                <div className='post-room'>
+                    <p>{getRoomName(rooms, postRoomId)}</p>
+                </div>
+                <div className='post-info'>
+                    <div className='circle'>
+                        <span className='profile-picture'>Picture</span>
+                    </div>
+                    <p className='post-user'>{postUser}</p>
+                    <p className='post-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
+                    <p className='post-delete'>{user === postUser && <DeletePost connection={connection} postId={postId} comments={comments} />}</p>
+                </div>
+                <p className='post-message'>{postMessage}</p>
+                <Comments
+                    postId={postId}
+                />
+            </div>
+        )
+    }
 
     return (
         <div className='posts'>
-            {posts.length > 0 ? posts.map((post) => {
-                const date = new Date(post.date)
-                return (
-                    <div className='post' key={post.id}>
-                        <div className='post-room'>
-                            <p>{getRoomName(rooms, post.roomId)}</p>
-                        </div>
-                        <div className='post-info'>
-                            <div className='circle'>
-                                <span className='profile-picture'>Picture</span>
-                            </div>
-                            <p className='post-user'>{post.user}</p>
-                            <p className='post-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
-                            <p className='post-delete'>{user === post.user && <DeletePost connection={connection} postId={post.id} comments={comments} />}</p>
-                        </div>
-                        <p className='post-message'>{post.message}</p>
-                        <Comments
-                            postId={post.id}
-                        />
-                    </div>
-                )
-            }) :
-                <div> Här var det tomt, lägg till nya inlägg </div>
+            {posts.length > 0 && !postFilter
+                ? posts.map((post) => {
+                    const date = new Date(post.date)
+                    return renderPosts(date, post.id, rooms, post.roomId, post.user, post.message, user);
+
+                })
+                : posts.map(post => {
+                    if (post.roomId === postFilter) {
+                        const date = new Date(post.date)
+                        return renderPosts(date, post.id, rooms, post.roomId, post.user, post.message, user);
+                    }
+                })
             }
         </div>
     )

@@ -41,7 +41,7 @@
 .add-room-button[alert]:hover:after {
     content: attr(alert);
     position: absolute;
-    top: 118;
+    top: 108;
     left: 200;
     font-size: 12px;
     box-sizing: border-box;

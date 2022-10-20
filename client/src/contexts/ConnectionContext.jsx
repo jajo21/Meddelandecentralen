@@ -10,6 +10,7 @@ export function ConnectionProvider({ children }) {
     const [rooms, setRooms] = useState([]);
     const [posts, setPosts] = useState([]);
     const [comments, setComments] = useState([]);
+    const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -32,6 +33,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('SendPosts', (posts) => {
                     console.log(posts);
+                    posts.reverse();
                     setPosts(posts);
                 });
 
@@ -42,7 +44,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('ReceivePost', (post) => {
                     console.log(post);
-                    setPosts(prevState => [...prevState, post]);
+                    setPosts(prevState => [post, ...prevState]);
                 });
 
                 connection.on('RecievePostId', response => {
@@ -90,7 +92,9 @@ export function ConnectionProvider({ children }) {
                 posts,
                 comments,
                 error,
-                setError
+                setError,
+                postFilter,
+                setPostFilter
             }}>
             {children}
         </ConnectionContext.Provider>

@@ -1,22 +1,25 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
 import UserContext from '../contexts/UserContext'
 import Comments from './Comments'
 import DeletePost from './DeletePost'
 
+import { getRoomName } from '../services/room'
+
 import './css/posts.css';
 
 function Posts() {
-    const { connection, posts, comments } = useContext(ConnectionContext);
+    const { connection, posts, comments, rooms } = useContext(ConnectionContext);
     const { user } = useContext(UserContext);
+
     return (
         <div className='posts'>
-            {posts.length > 0 && posts.map((post) => {
+            {posts.length > 0 ? posts.map((post) => {
                 const date = new Date(post.date)
                 return (
                     <div className='post' key={post.id}>
                         <div className='post-room'>
-                            <p>RUMSNAMN</p>
+                            <p>{getRoomName(rooms, post.roomId)}</p>
                         </div>
                         <div className='post-info'>
                             <div className='circle'>
@@ -32,7 +35,9 @@ function Posts() {
                         />
                     </div>
                 )
-            })}
+            }) :
+                <div> Här var det tomt, lägg till nya inlägg </div>
+            }
         </div>
     )
 }

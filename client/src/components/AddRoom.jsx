@@ -24,7 +24,11 @@ function AddRoom({ newRoom, setNewRoom, showAddRoom, setShowAddRoom }) {
             />
             {error && <p>{error}</p>}
 
-            <button className='save-room-button' onClick={() => addRoom(connection, newRoom)}>Spara</button>
+            <button className='save-room-button' onClick={() => {
+                addRoom(connection, newRoom);
+                setShowAddRoom(!showAddRoom);
+            }
+            }>Spara</button>
         </div>
     )
 }

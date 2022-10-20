@@ -1,13 +1,11 @@
 import React, { useEffect, useContext } from 'react'
 import { addPost } from '../services/post'
-import UserContext from '../contexts/UserContext';
 import ConnectionContext from '../contexts/ConnectionContext';
 
 import './css/addpost.css';
 
-function AddPost({ post, roomId, setPost, setRoomId, showAddRoom, setShowAddRoom }) {
-    const { user } = useContext(UserContext);
-    const { connection, rooms } = useContext(ConnectionContext);
+function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom }) {
+    const { user, connection, rooms } = useContext(ConnectionContext);
 
     //Elementet select nere i return får värdet 0 om denna useeffect inte finns
     useEffect(() => {
@@ -36,7 +34,7 @@ function AddPost({ post, roomId, setPost, setRoomId, showAddRoom, setShowAddRoom
                         <button
                             alert='Lägg till rum'
                             className='add-room-button'
-                            onClick={() => setShowAddRoom(!showAddRoom)}
+                            onClick={() => setShowAddRoom(prevState => !prevState)}
                         >+
                         </button>
                     </div>
@@ -46,7 +44,6 @@ function AddPost({ post, roomId, setPost, setRoomId, showAddRoom, setShowAddRoom
                         className='add-post-textarea'
                         placeholder='Skriv ett inlägg'
                         type="text"
-                        value={post}
                         onChange={e => setPost(e.target.value)}
                     />
                 </div>

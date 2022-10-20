@@ -1,9 +1,11 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useContext } from 'react'
 import { startConnection } from '../services/connection';
+import UserContext from './UserContext';
 
 const ConnectionContext = createContext();
 
 export function ConnectionProvider({ children }) {
+    const { user } = useContext(UserContext);
     const [connection, setConnection] = useState(null);
     const [rooms, setRooms] = useState([]);
     const [posts, setPosts] = useState([]);
@@ -82,6 +84,7 @@ export function ConnectionProvider({ children }) {
     return (
         <ConnectionContext.Provider
             value={{
+                user,
                 connection,
                 rooms,
                 posts,

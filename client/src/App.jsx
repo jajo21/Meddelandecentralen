@@ -18,9 +18,9 @@ function App() {
         <>
             {hasUser ?
                 <>
-                    <Navbar showAddPost={showAddPost} setShowAddPost={setShowAddPost} />
+                    <Navbar setShowAddPost={setShowAddPost} />
                     <ConnectionProvider>
-                        <Chat showAddPost={showAddPost} setShowAddPost={setShowAddPost} />
+                        <Chat showAddPost={showAddPost} />
                     </ConnectionProvider>
                 </>
                 :

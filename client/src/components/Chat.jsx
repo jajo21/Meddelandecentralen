@@ -29,7 +29,6 @@ function Chat({ showAddPost }) {
                         roomId={roomId}
                         setPost={setPost}
                         setRoomId={setRoomId}
-                        showAddRoom={showAddRoom}
                         setShowAddRoom={setShowAddRoom}
                     />
                 }
@@ -37,7 +36,6 @@ function Chat({ showAddPost }) {
                     <AddRoom
                         newRoom={newRoom}
                         setNewRoom={setNewRoom}
-                        showAddRoom={showAddRoom}
                         setShowAddRoom={setShowAddRoom}
                     />
                 }

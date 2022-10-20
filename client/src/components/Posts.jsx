@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
-import UserContext from '../contexts/UserContext'
 import Comments from './Comments'
 import DeletePost from './DeletePost'
 
@@ -9,8 +8,7 @@ import { getRoomName } from '../services/room'
 import './css/posts.css';
 
 function Posts() {
-    const { connection, posts, comments, rooms } = useContext(ConnectionContext);
-    const { user } = useContext(UserContext);
+    const { user, connection, posts, comments, rooms } = useContext(ConnectionContext);
 
     return (
         <div className='posts'>

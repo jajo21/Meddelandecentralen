@@ -5,7 +5,7 @@ import { faFilter, faMessage, faArrowRightFromBracket } from "@fortawesome/free-
 
 import './css/navbar.css';
 
-function Navbar({ showAddPost, setShowAddPost }) {
+function Navbar({ setShowAddPost }) {
     const { logoutUser } = useContext(UserContext);
     return (
         <nav className='navbar'>
@@ -15,7 +15,7 @@ function Navbar({ showAddPost, setShowAddPost }) {
             <div title='Filtrera inlägg' className='navbar-button-div'>
                 <FontAwesomeIcon className='navbar-icon' icon={faFilter} />
             </div>
-            <div title='Lägg till inlägg' className='navbar-button-div' onClick={() => setShowAddPost(!showAddPost)}>
+            <div title='Lägg till inlägg' className='navbar-button-div' onClick={() => setShowAddPost(prevState => !prevState)}>
                 <FontAwesomeIcon className='navbar-icon' icon={faMessage} />
             </div>
         </nav>

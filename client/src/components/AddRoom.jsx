@@ -4,13 +4,13 @@ import { addRoom } from '../services/room'
 
 import './css/addroom.css';
 
-function AddRoom({ newRoom, setNewRoom, showAddRoom, setShowAddRoom }) {
+function AddRoom({ newRoom, setNewRoom, setShowAddRoom }) {
     const { connection, error, setError } = useContext(ConnectionContext);
     return (
         <div className='add-room'>
             <div className='add-room-header'>
                 <h3>Lägg till rum</h3>
-                <div className='add-room-close' alert='Stäng' onClick={() => setShowAddRoom(!showAddRoom)}> X </div>
+                <div className='add-room-close' alert='Stäng' onClick={() => setShowAddRoom(prevState => !prevState)}> X </div>
             </div>
             <input
                 type="text"
@@ -26,7 +26,7 @@ function AddRoom({ newRoom, setNewRoom, showAddRoom, setShowAddRoom }) {
 
             <button className='save-room-button' onClick={() => {
                 addRoom(connection, newRoom);
-                setShowAddRoom(!showAddRoom);
+                setShowAddRoom(prevState => !prevState);
             }
             }>Spara</button>
         </div>

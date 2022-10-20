@@ -1,0 +1,24 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    background: whitesmoke;
+    position: fixed;
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+}
+
+.navbar-icon {
+    color: black;
+    font-size: 26px;
+    padding: 5px;
+    border-radius: 6px;
+}
+
+.navbar-icon:hover {
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 3px 6px #888888;
+}

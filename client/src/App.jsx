@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import ReactDOM from "react-dom/client";
 
 import Chat from './components/Chat';
 import UserContext from './contexts/UserContext';
 import Login from './components/Login';
+import Navbar from './components/Navbar';
 
 import { UserProvider } from './contexts/UserContext';
 import { ConnectionProvider } from './contexts/ConnectionContext';
@@ -12,18 +13,25 @@ import './app.css';
 
 function App() {
     const { hasUser } = useContext(UserContext);
+    const [showAddPost, setShowAddPost] = useState(false);
     return (
-        <main>
-            {hasUser ? <Chat /> : <Login />}
-        </main>
+        <>
+            {hasUser ?
+                <>
+                    <Navbar showAddPost={showAddPost} setShowAddPost={setShowAddPost} />
+                    <ConnectionProvider>
+                        <Chat showAddPost={showAddPost} setShowAddPost={setShowAddPost} />
+                    </ConnectionProvider>
+                </>
+                :
+                <Login />}
+        </>
     )
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <UserProvider>
-        <ConnectionProvider>
-            <App />
-        </ConnectionProvider>
+        <App />
     </UserProvider>
 );

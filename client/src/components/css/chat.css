@@ -29,15 +29,3 @@
     margin-left: 30px;
     font-size: 20px;
 }
-
-.navbar {
-    display: flex;
-    justify-content: space-around;
-    background: whitesmoke;
-    position: fixed;
-    padding: 20px;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: white;
-}

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
 import UserContext from '../contexts/UserContext';
 
-function Logout() {
+function Logout({ icon }) {
     const { logoutUser } = useContext(UserContext);
     return (
-        <button onClick={() => logoutUser()}>Logga ut</button>
+        <div className='navbar-button-div' onClick={() => logoutUser()}>{icon}</div>
     )
 }
 

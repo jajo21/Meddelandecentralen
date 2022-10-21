@@ -15,7 +15,11 @@ function AddComment({ postId, user, connection }) {
                 onChange={(e) => setMessage(e.target.value)}
             />
             <div className='add-comment-div'>
-                <button className='add-comment-button' onClick={() => addComment(connection, user, message, postId)}>Skicka</button>
+                <button className='add-comment-button' onClick={() => {
+                    addComment(connection, user, message, postId);
+                    setMessage('');
+                }
+                }>Skicka</button>
             </div>
         </div>
     )

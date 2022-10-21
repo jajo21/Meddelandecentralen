@@ -5,6 +5,8 @@ import DeletePost from './DeletePost'
 
 import { getRoomName } from '../services/room'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import './css/posts.css';
 
 function Posts() {
@@ -47,6 +49,11 @@ function Posts() {
                     }
                 })
             }
+
+            {posts.length === 0 &&
+                <div className='empty'>
+                    Här var det tomt, testa att klicka på <FontAwesomeIcon icon={faMessage} /> i menyn och skapa ett inlägg!
+                </div>}
         </div>
     )
 }

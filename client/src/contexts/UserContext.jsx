@@ -14,6 +14,7 @@ export function UserProvider({ children }) {
 
     const logoutUser = () => {
         setHasUser(!hasUser);
+        setUser('');
         removeUser();
     }
 

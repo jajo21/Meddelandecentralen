@@ -4,10 +4,10 @@ import ConnectionContext from '../contexts/ConnectionContext';
 
 import './css/addpost.css';
 
-function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom }) {
+function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom, setShowAddPost }) {
     const { user, connection, rooms } = useContext(ConnectionContext);
 
-    //Elementet select nere i return får värdet 0 om denna useeffect inte finns
+    //Elementet select i return får värdet 0 om denna useeffect inte finns
     useEffect(() => {
         if (rooms.length > 0) {
             setRoomId(rooms[0].id)
@@ -44,12 +44,18 @@ function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom }) {
                         className='add-post-textarea'
                         placeholder='Skriv ett inlägg'
                         type="text"
+                        value={post}
                         onChange={e => setPost(e.target.value)}
                     />
                 </div>
             </div>
 
-            <button className='add-post-button' onClick={() => addPost(connection, user, post, roomId)}>Skicka</button>
+            <button className='add-post-button' onClick={() => {
+                addPost(connection, user, post, roomId);
+                setShowAddPost(prevState => !prevState);
+                setPost('');
+            }
+            }>Skicka</button>
         </div>
     )
 }

@@ -26,6 +26,7 @@ function App() {
                         <Chat
                             showAddPost={showAddPost}
                             showAddFilter={showAddFilter}
+                            setShowAddPost={setShowAddPost}
                             setShowAddFilter={setShowAddFilter}
                         />
                     </ConnectionProvider>

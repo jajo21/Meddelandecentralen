@@ -1,6 +1,7 @@
 .add-post {
     padding: 20px 10px;
     border-bottom: 1px solid rgb(195, 195, 195);
+    text-align: right;
 }
 
 .add-room-div{
@@ -13,15 +14,11 @@
     border-radius: 8px;
     cursor: pointer;
 }
-.add-post-room option {
-    padding: 5px;
-    border-radius: 8px;
-    cursor: pointer;
-}
 
 .add-room-button-div{
     margin-left: 10px;
 }
+
 .add-room-button{
     font-size: 20px;
     padding: 3px 8px;

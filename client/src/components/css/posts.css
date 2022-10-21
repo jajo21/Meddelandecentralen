@@ -37,3 +37,7 @@
 .post-message {
     margin: 0 4px 10px 60px;
 }
+
+.empty {
+    padding: 30px;
+}

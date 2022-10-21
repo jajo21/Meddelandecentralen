@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
-import UserContext from '../contexts/UserContext';
 import AddComment from './AddComment'
 import DeleteComment from './DeleteComment';
 
@@ -9,8 +8,7 @@ import { faComment } from "@fortawesome/free-regular-svg-icons";
 import './css/comments.css';
 
 function Comments({ postId }) {
-    const { connection, comments } = useContext(ConnectionContext);
-    const { user } = useContext(UserContext);
+    const { user, connection, comments } = useContext(ConnectionContext);
     const [showComments, setShowComments] = useState(false);
 
     return (
@@ -46,6 +44,8 @@ function Comments({ postId }) {
                     </div>
                     <AddComment
                         postId={postId}
+                        user={user}
+                        connection={connection}
                     />
                 </>
             }

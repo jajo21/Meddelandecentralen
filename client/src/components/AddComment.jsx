@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react'
-import ConnectionContext from '../contexts/ConnectionContext'
+import React, { useState } from 'react'
 import { addComment } from '../services/comment'
 import './css/addcomment.css'
 
-function AddComment({ postId }) {
-    const { user, connection } = useContext(ConnectionContext);
+function AddComment({ postId, user, connection }) {
     const [message, setMessage] = useState('');
 
     return (

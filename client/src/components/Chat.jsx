@@ -9,7 +9,6 @@ import AddFilter from './AddFilter';
 import './css/chat.css';
 
 function Chat({ showAddPost, showAddFilter, setShowAddFilter }) {
-
     const [post, setPost] = useState('');
     const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
@@ -22,7 +21,7 @@ function Chat({ showAddPost, showAddFilter, setShowAddFilter }) {
                     <div className='circle'>
                         <span className='profile-picture'>Picture</span>
                     </div>
-                    <h2 className='welcome'>Välkommen {getUser()}!</h2> {/* State user istället? */}
+                    <h2 className='welcome'>Välkommen {getUser()}!</h2>
                 </div>
 
                 {showAddPost &&

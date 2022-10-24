@@ -1,5 +1,9 @@
+.show-comments > sup {
+    font-size: 12px;
+}
+
 .icon-comment {
-    margin: 0 4px 0 60px;
+    margin: 10px 4px 0 60px;
     font-size: 20px;
 }
 

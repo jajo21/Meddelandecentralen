@@ -17,25 +17,12 @@ export const startConnection = async () => {
     });
 
     connection.start().then(() => {
-        console.log("Connection started");
-
-        (async () => {
-            if (!connection._connectionStarted) { //guard clause
-                console.error('No connection to SignalR');
-                return;
-            }
-            try {
-                await connection.send('SendRooms');
-                await connection.send('SendPosts');
-                await connection.send('SendComments');
-            }
-            catch (err) {
-                console.error("Connection established but another error occured: ", err);
-            }
-        })();
-
-    })
-
+        console.log("Connection Started");
+        if (!connection._connectionStarted) {
+            console.error('No connection to SignalR');
+            return;
+        }
+    });
 
     return connection;
 }

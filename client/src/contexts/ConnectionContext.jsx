@@ -81,7 +81,19 @@ export function ConnectionProvider({ children }) {
             }
         }
         connectionOn();
+
+        return () => stopConnection();
+
     }, [connection])
+
+
+    const stopConnection = () => {
+        if (connection !== null) {
+            connection.stop().then(() => {
+                console.log("Connection closed!");
+            });
+        }
+    };
 
     return (
         <ConnectionContext.Provider

@@ -1,5 +1,7 @@
+import baseURL from "../baseURL";
+
 export const getRooms = async () => {
-    const URL = "https://localhost:6001/api/rooms";
+    const URL = baseURL + "api/rooms";
     try {
         const response = await fetch(URL);
         if (!response.ok) {

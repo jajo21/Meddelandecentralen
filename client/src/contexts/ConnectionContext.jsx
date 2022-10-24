@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { startConnection } from '../services/connection';
+import { startConnection } from '../services/api/signalr/connection';
 import UserContext from './UserContext';
-import { getRooms } from '../services/api/rooms';
-import { getPosts } from '../services/api/posts';
-import { getComments } from '../services/api/comments';
+import { getRooms } from '../services/api/http/rooms';
+import { getPosts } from '../services/api/http/posts';
+import { getComments } from '../services/api/http/comments';
 
 const ConnectionContext = createContext();
 
@@ -46,7 +46,6 @@ export function ConnectionProvider({ children }) {
         const connectionOn = () => {
             if (connection) {
                 connection.on('ReceivePost', (post) => {
-                    console.log(post);
                     setPosts(prevState => [post, ...prevState]);
                 });
 
@@ -59,7 +58,6 @@ export function ConnectionProvider({ children }) {
                 });
 
                 connection.on('RecieveComment', comment => {
-                    console.log(comment);
                     setComments(prevState => [...prevState, comment]);
                 })
 
@@ -72,7 +70,6 @@ export function ConnectionProvider({ children }) {
                 })
 
                 connection.on('RecieveRoom', (room) => {
-                    console.log(room);
                     setRooms(prevState => [...prevState, room])
                 });
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
-import { getRoomName } from '../services/room';
+import { getRoomName } from '../services/roomService';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from "@fortawesome/free-solid-svg-icons";

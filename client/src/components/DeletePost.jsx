@@ -1,7 +1,6 @@
 import React from 'react'
-import { deleteComment } from '../services/comment';
-import { deletePost } from '../services/post';
-
+import { deleteComment } from '../services/api/signalr/comment';
+import { deletePost } from '../services/api/signalr/post';
 import './css/deletepost.css';
 
 function DeletePost({ connection, postId, comments }) {

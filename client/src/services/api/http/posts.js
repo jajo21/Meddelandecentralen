@@ -1,5 +1,7 @@
+import baseURL from "../baseURL";
+
 export const getPosts = async () => {
-    const URL = "https://localhost:6001/api/posts";
+    const URL = baseURL + "api/posts";
     try {
         const response = await fetch(URL);
         if (!response.ok) {

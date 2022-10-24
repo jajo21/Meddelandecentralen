@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { addPost } from '../services/post'
+import { addPost } from '../services/api/signalr/post';
 import ConnectionContext from '../contexts/ConnectionContext';
 
 import './css/addpost.css';

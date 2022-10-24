@@ -1,5 +1,7 @@
+import baseURL from "../baseURL";
+
 export const getComments = async () => {
-    const URL = "https://localhost:6001/api/comments";
+    const URL = baseURL + "api/comments";
     try {
         const response = await fetch(URL);
         if (!response.ok) {

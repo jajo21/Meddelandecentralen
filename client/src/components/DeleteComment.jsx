@@ -1,5 +1,5 @@
 import React from 'react'
-import { deleteComment } from '../services/comment';
+import { deleteComment } from '../services/api/signalr/comment';
 
 import './css/deletecomment.css'
 

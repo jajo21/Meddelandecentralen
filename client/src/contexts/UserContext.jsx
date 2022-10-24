@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react'
-import { getUser, removeUser, saveUser } from '../services/user';
+import { getUser, removeUser, saveUser } from '../services/localstorage/user';
 
 const UserContext = createContext();
 

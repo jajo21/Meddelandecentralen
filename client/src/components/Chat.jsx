@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getUser } from '../services/user';
+import { getUser } from '../services/localstorage/user';
 
 import AddPost from './AddPost';
 import AddRoom from './AddRoom';

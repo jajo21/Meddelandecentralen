@@ -38,8 +38,8 @@
 .add-room-button[alert]:hover:after {
     content: attr(alert);
     position: absolute;
-    top: 108;
-    left: 200;
+    margin-left: 12px;
+    margin-top: 5px;
     font-size: 12px;
     box-sizing: border-box;
     color: black;

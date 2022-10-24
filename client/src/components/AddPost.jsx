@@ -53,6 +53,7 @@ function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom, setShowAddP
             <button className='add-post-button' onClick={() => {
                 addPost(connection, user, post, roomId);
                 setShowAddPost(prevState => !prevState);
+                setShowAddRoom(prevState => !prevState)
                 setPost('');
             }
             }>Skicka</button>

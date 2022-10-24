@@ -27,6 +27,7 @@ function AddRoom({ newRoom, setNewRoom, setShowAddRoom }) {
             <button className='save-room-button' onClick={() => {
                 addRoom(connection, newRoom);
                 setShowAddRoom(prevState => !prevState);
+                setNewRoom('');
             }
             }>Spara</button>
         </div>

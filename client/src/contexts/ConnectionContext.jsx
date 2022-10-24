@@ -1,6 +1,9 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { startConnection } from '../services/connection';
+import { startConnection } from '../services/api/signalr/connection';
 import UserContext from './UserContext';
+import { getRooms } from '../services/api/http/rooms';
+import { getPosts } from '../services/api/http/posts';
+import { getComments } from '../services/api/http/comments';
 
 const ConnectionContext = createContext();
 
@@ -12,6 +15,22 @@ export function ConnectionProvider({ children }) {
     const [comments, setComments] = useState([]);
     const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const [rooms, roomError] = await getRooms();
+            if (roomError) console.log(roomError);
+            setRooms(rooms);
+            const [posts, postError] = await getPosts();
+            if (postError) console.log(postError);
+            posts.reverse();
+            setPosts(posts);
+            const [comments, commentsError] = await getComments();
+            if (commentsError) console.log(commentsError);
+            setComments(comments);
+        }
+        fetchData();
+    }, [])
 
     useEffect(() => {
         if (connection === null) {
@@ -26,24 +45,7 @@ export function ConnectionProvider({ children }) {
     useEffect(() => {
         const connectionOn = () => {
             if (connection) {
-                connection.on('SendRooms', (rooms) => {
-                    console.log(rooms);
-                    setRooms(rooms);
-                });
-
-                connection.on('SendPosts', (posts) => {
-                    console.log(posts);
-                    posts.reverse();
-                    setPosts(posts);
-                });
-
-                connection.on('SendComments', (comments) => {
-                    console.log(comments);
-                    setComments(comments);
-                });
-
                 connection.on('ReceivePost', (post) => {
-                    console.log(post);
                     setPosts(prevState => [post, ...prevState]);
                 });
 
@@ -56,7 +58,6 @@ export function ConnectionProvider({ children }) {
                 });
 
                 connection.on('RecieveComment', comment => {
-                    console.log(comment);
                     setComments(prevState => [...prevState, comment]);
                 })
 
@@ -69,7 +70,6 @@ export function ConnectionProvider({ children }) {
                 })
 
                 connection.on('RecieveRoom', (room) => {
-                    console.log(room);
                     setRooms(prevState => [...prevState, room])
                 });
 

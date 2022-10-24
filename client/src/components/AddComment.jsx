@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { addComment } from '../services/comment'
+import { addComment } from '../services/api/signalr/comment';
 import './css/addcomment.css'
 
 function AddComment({ postId, user, connection }) {

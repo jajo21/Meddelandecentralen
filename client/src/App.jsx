@@ -1,11 +1,10 @@
 import React, { useContext, useState } from 'react'
+import { ConnectionProvider } from './contexts/ConnectionContext';
 
 import Chat from './components/Chat';
 import UserContext from './contexts/UserContext';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
-
-import { ConnectionProvider } from './contexts/ConnectionContext';
 
 import './app.css';
 

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext';
-import { addRoom } from '../services/room'
+import { addRoom } from '../services/api/signalr/room';
 
 import './css/addroom.css';
 

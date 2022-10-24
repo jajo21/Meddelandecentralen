@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import ConnectionContext from '../contexts/ConnectionContext'
 import Comments from './Comments'
 import DeletePost from './DeletePost'
 
-import { getRoomName } from '../services/room'
+import { getRoomName } from '../services/roomService'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from "@fortawesome/free-solid-svg-icons";

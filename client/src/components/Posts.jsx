@@ -12,48 +12,49 @@ import './css/posts.css';
 function Posts() {
     const { user, connection, posts, comments, rooms, postFilter } = useContext(ConnectionContext);
 
-    const renderPosts = (date, postId, rooms, postRoomId, postUser, postMessage, user) => {
-        return (
-            <div className='post' key={postId}>
-                <div className='post-room'>
-                    <p>{getRoomName(rooms, postRoomId)}</p>
-                </div>
-                <div className='post-info'>
-                    <div className='circle'>
-                        <span className='profile-picture'>Picture</span>
-                    </div>
-                    <p className='post-user'>{postUser}</p>
-                    <p className='post-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
-                    <p className='post-delete'>{user === postUser && <DeletePost connection={connection} postId={postId} comments={comments} />}</p>
-                </div>
-                <p className='post-message'>{postMessage}</p>
-                <Comments
-                    postId={postId}
-                />
-            </div>
-        )
+    const sortPosts = (posts, postFilter) => {
+        if (posts.length === 0) return [];
+        if (posts.length > 0 && !postFilter) {
+            return posts;
+        } else {
+            return posts.filter(post => post.roomId === postFilter);
+        }
     }
+
+    const sortedPosts = sortPosts(posts, postFilter);
 
     return (
         <div className='posts'>
-            {posts.length > 0 && !postFilter
-                ? posts.map((post) => {
+            {sortedPosts.length > 0 &&
+                sortedPosts.map(post => {
                     const date = new Date(post.date)
-                    return renderPosts(date, post.id, rooms, post.roomId, post.user, post.message, user);
-
-                })
-                : posts.map(post => {
-                    if (post.roomId === postFilter) {
-                        const date = new Date(post.date)
-                        return renderPosts(date, post.id, rooms, post.roomId, post.user, post.message, user);
-                    }
+                    return (
+                        <div className='post' key={post.id}>
+                            <div className='post-room'>
+                                <p>{getRoomName(rooms, post.roomId)}</p>
+                            </div>
+                            <div className='post-info'>
+                                <div className='circle'>
+                                    <span className='profile-picture'>Picture</span>
+                                </div>
+                                <p className='post-user'>{post.user}</p>
+                                <p className='post-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
+                                <p className='post-delete'>{user === post.user && <DeletePost connection={connection} postId={post.id} comments={comments} />}</p>
+                            </div>
+                            <p className='post-message'>{post.message}</p>
+                            <Comments
+                                postId={post.id}
+                            />
+                        </div>
+                    )
                 })
             }
 
-            {posts.length === 0 &&
+            {sortedPosts.length === 0 &&
                 <div className='empty'>
                     Här var det tomt, testa att klicka på <FontAwesomeIcon icon={faMessage} /> i menyn och skapa ett inlägg!
-                </div>}
+                </div>
+            }
         </div>
     )
 }

@@ -42,7 +42,7 @@ function AddPost({ post, roomId, setPost, setRoomId, setShowAddRoom, setShowAddP
                 <div>
                     <textarea
                         className='add-post-textarea'
-                        placeholder='Skriv ett inlägg'
+                        placeholder='Välj ett rum och skriv ett inlägg'
                         type="text"
                         value={post}
                         onChange={e => setPost(e.target.value)}

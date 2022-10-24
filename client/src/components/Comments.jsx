@@ -11,10 +11,25 @@ function Comments({ postId }) {
     const { user, connection, comments } = useContext(ConnectionContext);
     const [showComments, setShowComments] = useState(false);
 
+    const sortComments = (comments, postId) => {
+        if (comments.length === 0) return 0;
+        if (comments.length > 0 && postId) {
+
+            return comments.filter(comment => comment.postId === postId);
+        }
+    }
+
+    const sortedComments = sortComments(comments, postId);
+
     return (
         <>
-            <div className='show-comments' onClick={() => setShowComments(!showComments)}>
-                <FontAwesomeIcon className='icon-comment' icon={faComment} />
+            <div className='show-comments'>
+                <FontAwesomeIcon
+                    onClick={() => setShowComments(!showComments)}
+                    className='icon-comment'
+                    icon={faComment}
+                />
+                <sup>{sortedComments.length}</sup>
             </div>
             {
                 showComments &&

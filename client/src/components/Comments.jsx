@@ -47,7 +47,7 @@ function Comments({ postId }) {
                                                 </div>
                                                 <p className='comment-user'>{comment.user}</p>
                                                 <p className='comment-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
-                                                <p className='comment-delete'>{user === comment.user && <DeleteComment connection={connection} commentId={comment.id} />}</p>
+                                                <div className='comment-delete'>{user === comment.user && <DeleteComment connection={connection} commentId={comment.id} />}</div>
                                             </div>
                                             <p className='comment-message'>{comment.message}</p>
                                         </div>

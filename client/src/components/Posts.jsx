@@ -40,7 +40,7 @@ function Posts() {
                                 </div>
                                 <p className='post-user'>{post.user}</p>
                                 <p className='post-date'>{date.toLocaleDateString("sv-SV", { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' })}</p>
-                                <p className='post-delete'>{user === post.user && <DeletePost connection={connection} postId={post.id} comments={comments} />}</p>
+                                <div className='post-delete'>{user === post.user && <DeletePost connection={connection} postId={post.id} comments={comments} />}</div>
                             </div>
                             <p className='post-message'>{post.message}</p>
                             <Comments

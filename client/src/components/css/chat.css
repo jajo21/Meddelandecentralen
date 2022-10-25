@@ -8,3 +8,89 @@
         min-height: 100vh;
     }
 }
+
+
+/* DeletePost.jsx & DeleteComment.jsx */
+
+.accept-modal {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left:0;
+    top:0;
+    right:0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+    overflow: auto;
+
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.accept-modal.open {
+    opacity: 1;
+    pointer-events: visible;
+}
+
+.accept-content {
+    width: 85%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    transform: translateY(-200px);
+    transition: all 0.3s ease-in-out;
+}
+
+.accept-modal.open .accept-content {
+    transform: translateY(0);
+}
+
+.accept-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.accept-info {
+    margin: 20px;
+    font-size: 16px;
+}
+
+.accept-button {
+    background-color: #fc6767;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.accept-button:hover {
+    background-color: #ff1717;
+    cursor: pointer;
+}
+
+.decline-button {
+    background-color: #1d9bf0;
+    border: none;
+    color: white;
+    padding: 6px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 2px;
+}
+
+.decline-button:hover {
+    background-color: #1a8fdc;
+    cursor: pointer;
+}

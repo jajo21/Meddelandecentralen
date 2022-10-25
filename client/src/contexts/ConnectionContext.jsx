@@ -18,6 +18,7 @@ export function ConnectionProvider({ children }) {
     const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
 
+    //Hämtar sparad data från servern via fetch
     useEffect(() => {
         const fetchData = async () => {
             const [rooms, roomError] = await getRooms();
@@ -34,6 +35,7 @@ export function ConnectionProvider({ children }) {
         fetchData();
     }, [])
 
+    //Skapar en connection mot signalr-hubben
     useEffect(() => {
         if (connection === null) {
             const createHubConnection = async () => {
@@ -44,6 +46,7 @@ export function ConnectionProvider({ children }) {
         }
     }, [])
 
+    //Skapar connection mellan metoderna i API:t till klienten
     useEffect(() => {
         const connectionOn = () => {
             if (connection) {
@@ -87,6 +90,7 @@ export function ConnectionProvider({ children }) {
 
     }, [connection])
 
+    //Om en error uppstår, visa det på skärmen
     useEffect(() => {
         if (error) {
             toast.error(error);
@@ -94,6 +98,7 @@ export function ConnectionProvider({ children }) {
         }
     }, [error])
 
+    //Avsluta connection mot signalr
     const stopConnection = () => {
         if (connection !== null) {
             connection.stop().then(() => {

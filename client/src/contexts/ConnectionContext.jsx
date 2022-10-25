@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { startConnection } from '../services/api/signalr/connection';
+import { toast } from 'react-toastify';
+
 import UserContext from './UserContext';
+import { startConnection } from '../services/api/signalr/connection';
 import { getRooms } from '../services/api/http/rooms';
 import { getPosts } from '../services/api/http/posts';
 import { getComments } from '../services/api/http/comments';
-
-import { toast } from 'react-toastify';
+import { getRoomName, getRoomNameByPostId } from '../services/roomService';
+import { getPostUser } from '../services/postService';
 
 const ConnectionContext = createContext();
 
@@ -17,20 +19,33 @@ export function ConnectionProvider({ children }) {
     const [comments, setComments] = useState([]);
     const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
+    const [connectionError, setConnectionError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
 
     //Hämtar sparad data från servern via fetch
     useEffect(() => {
         const fetchData = async () => {
             const [rooms, roomError] = await getRooms();
-            if (roomError) console.log(roomError);
-            setRooms(rooms);
+            if (roomError) {
+                console.log(roomError);
+            } else {
+                setRooms(rooms);
+            }
+
             const [posts, postError] = await getPosts();
-            if (postError) console.log(postError);
-            posts.reverse();
-            setPosts(posts);
+            if (postError) {
+                console.log(postError);
+            } else {
+                posts.reverse();
+                setPosts(posts);
+            }
+
             const [comments, commentsError] = await getComments();
-            if (commentsError) console.log(commentsError);
-            setComments(comments);
+            if (commentsError) {
+                console.log(commentsError);
+            } else {
+                setComments(comments);
+            }
         }
         fetchData();
     }, [])
@@ -39,8 +54,13 @@ export function ConnectionProvider({ children }) {
     useEffect(() => {
         if (connection === null) {
             const createHubConnection = async () => {
-                const connection = await startConnection();
-                setConnection(connection);
+                const [connection, error] = await startConnection();
+                if (error) {
+                    setConnectionError(error);
+                } else {
+                    console.log("Connection Started");
+                    setConnection(connection);
+                }
             }
             createHubConnection();
         }
@@ -52,6 +72,7 @@ export function ConnectionProvider({ children }) {
             if (connection) {
                 connection.on('ReceivePost', (post) => {
                     setPosts(prevState => [post, ...prevState]);
+                    setSuccessMessage({ type: "post", post });
                 });
 
                 connection.on('RecievePostId', response => {
@@ -64,6 +85,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('RecieveComment', comment => {
                     setComments(prevState => [...prevState, comment]);
+                    setSuccessMessage({ type: "comment", comment });
                 })
 
                 connection.on('RecieveCommentId', response => {
@@ -76,6 +98,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('RecieveRoom', (room) => {
                     setRooms(prevState => [...prevState, room])
+                    setSuccessMessage({ type: "room", room });
                 });
 
                 connection.on('RecieveError', (error) => {
@@ -96,7 +119,16 @@ export function ConnectionProvider({ children }) {
             toast.error(error);
             setError(null);
         }
-    }, [error])
+        if (successMessage) {
+            if (successMessage.type === "post")
+                toast.success(`Ett nytt inlägg har skapats i "${getRoomName(rooms, successMessage.post.roomId)}" av ${successMessage.post.user}`)
+            if (successMessage.type === "comment")
+                toast.success(`${successMessage.comment.user} har kommenterat ${getPostUser(posts, successMessage.comment.postId)}'s inlägg i "${getRoomNameByPostId(rooms, posts, successMessage.comment.postId)}"`)
+            if (successMessage.type === "room")
+                toast.success(`Rummet "${successMessage.room.name}" har skapats av ${successMessage.room.user}`)
+            setSuccessMessage(null);
+        }
+    }, [error, successMessage])
 
     //Avsluta connection mot signalr
     const stopConnection = () => {
@@ -115,10 +147,9 @@ export function ConnectionProvider({ children }) {
                 rooms,
                 posts,
                 comments,
-                error,
-                setError,
                 postFilter,
-                setPostFilter
+                setPostFilter,
+                connectionError
             }}>
             {children}
         </ConnectionContext.Provider>

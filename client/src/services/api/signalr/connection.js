@@ -9,7 +9,7 @@ export const startConnection = async () => {
         .build();
 
     connection.onreconnecting((error) => {
-        console.log("onreconnecting", error);
+        console.log(error);
     });
 
     // show that we're reconnected

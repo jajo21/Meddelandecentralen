@@ -23,17 +23,26 @@ export function ConnectionProvider({ children }) {
     useEffect(() => {
         const fetchData = async () => {
             const [rooms, roomError] = await getRooms();
-            if (roomError) console.log(roomError);
-            if (rooms) setRooms(rooms);
+            if (roomError) {
+                console.log(roomError);
+            } else {
+                setRooms(rooms);
+            }
+
             const [posts, postError] = await getPosts();
-            if (postError) console.log(postError);
-            if (posts) {
+            if (postError) {
+                console.log(postError);
+            } else {
                 posts.reverse();
                 setPosts(posts);
             }
+
             const [comments, commentsError] = await getComments();
-            if (commentsError) console.log(commentsError);
-            if (comments) setComments(comments);
+            if (commentsError) {
+                console.log(commentsError);
+            } else {
+                setComments(comments);
+            }
         }
         fetchData();
     }, [])

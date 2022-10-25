@@ -9,7 +9,7 @@ import Navbar from './components/Navbar';
 import './app.css';
 
 function App() {
-    const { hasUser } = useContext(UserContext);
+    const { user, hasUser } = useContext(UserContext);
     const [showAddPost, setShowAddPost] = useState(false);
     const [showAddFilter, setShowAddFilter] = useState(false);
     return (
@@ -23,6 +23,7 @@ function App() {
 
                     <ConnectionProvider>
                         <Chat
+                            user={user}
                             showAddPost={showAddPost}
                             showAddFilter={showAddFilter}
                             setShowAddPost={setShowAddPost}

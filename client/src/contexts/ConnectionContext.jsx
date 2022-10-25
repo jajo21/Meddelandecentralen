@@ -5,6 +5,8 @@ import { getRooms } from '../services/api/http/rooms';
 import { getPosts } from '../services/api/http/posts';
 import { getComments } from '../services/api/http/comments';
 
+import { toast } from 'react-toastify';
+
 const ConnectionContext = createContext();
 
 export function ConnectionProvider({ children }) {
@@ -74,7 +76,6 @@ export function ConnectionProvider({ children }) {
                 });
 
                 connection.on('RecieveError', (error) => {
-                    console.log(error);
                     setError(error);
                 });
 
@@ -86,6 +87,12 @@ export function ConnectionProvider({ children }) {
 
     }, [connection])
 
+    useEffect(() => {
+        if (error) {
+            toast.error(error);
+            setError(null);
+        }
+    }, [error])
 
     const stopConnection = () => {
         if (connection !== null) {

@@ -12,9 +12,8 @@ function Comments({ postId }) {
     const [showComments, setShowComments] = useState(false);
 
     const sortComments = (comments, postId) => {
-        if (comments.length === 0) return 0;
+        if (comments.length === 0) return [];
         if (comments.length > 0 && postId) {
-
             return comments.filter(comment => comment.postId === postId);
         }
     }

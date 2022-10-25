@@ -22,27 +22,20 @@ namespace ChatAPI.Hubs
             _commentRepository = commentRepository;
         }
 
-        public async Task SendPosts()
-        {
-            await Clients.Caller.SendAsync("SendPosts", _postRepository.AllPosts);
-        }
-        public async Task SendRooms()
-        {
-            await Clients.Caller.SendAsync("SendRooms", _roomRepository.AllRooms);
-        }
-
-        public async Task SendComments()
-        {
-            await Clients.Caller.SendAsync("SendComments", _commentRepository.AllComments);
-        }
-
         public async Task AddPost(Post post)
         {
-            _postRepository.AddPost(post);
-            await Clients.All.SendAsync("ReceivePost", post);
+            try
+            {
+                _postRepository.AddPost(post);
+                await Clients.All.SendAsync("ReceivePost", post);
+            }
+            catch (Exception error)
+            {
+                await Clients.All.SendAsync("RecieveError", error.Message);
+            }
         }
 
-        public async Task DeletePost(DeleteRequest delete) // Behöver den en egen model?
+        public async Task DeletePost(DeleteRequest delete)
         {
             try
             {

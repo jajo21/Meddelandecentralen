@@ -5,10 +5,11 @@ import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';
 import AddFilter from './AddFilter';
+import ErrorMessage from './ErrorMessage';
 
 import './css/chat.css';
 
-function Chat({ showAddPost, showAddFilter, setShowAddPost, setShowAddFilter }) {
+function Chat({ user, showAddPost, showAddFilter, setShowAddPost, setShowAddFilter }) {
     const [post, setPost] = useState('');
     const [roomId, setRoomId] = useState(null);
     const [newRoom, setNewRoom] = useState('');
@@ -21,7 +22,7 @@ function Chat({ showAddPost, showAddFilter, setShowAddPost, setShowAddFilter }) 
                     <div className='circle'>
                         <span className='profile-picture'>Picture</span>
                     </div>
-                    <h2 className='welcome'>Välkommen {getUser()}!</h2>
+                    <h2 className='welcome'>Välkommen {user}!</h2>
                 </div>
 
                 {showAddPost &&
@@ -48,6 +49,7 @@ function Chat({ showAddPost, showAddFilter, setShowAddPost, setShowAddFilter }) 
                 />
 
                 <Posts />
+                <ErrorMessage />
             </div>
         </main>
     )

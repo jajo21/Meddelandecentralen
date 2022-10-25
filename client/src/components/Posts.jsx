@@ -10,7 +10,7 @@ import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import './css/posts.css';
 
 function Posts() {
-    const { user, connection, posts, comments, rooms, postFilter } = useContext(ConnectionContext);
+    const { user, connection, posts, comments, rooms, postFilter, connectionError } = useContext(ConnectionContext);
 
     const sortPosts = (posts, postFilter) => {
         if (posts.length === 0) return [];
@@ -51,9 +51,20 @@ function Posts() {
                 })
             }
 
-            {sortedPosts.length === 0 &&
+            {sortedPosts.length === 0 && !connectionError &&
                 <div className='empty'>
                     Här var det tomt, testa att klicka på <FontAwesomeIcon icon={faMessage} /> i menyn och skapa ett inlägg!
+                </div>
+            }
+
+            {connectionError &&
+                <div className='connection-error'>
+                    <h2>Error</h2>
+                    <p>Något har gått fel med uppkopplingen till servern.</p>
+                    <details>
+                        <summary>Details</summary>
+                        {connectionError.message}
+                    </details>
                 </div>
             }
         </div>

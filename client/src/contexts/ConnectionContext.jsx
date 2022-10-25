@@ -17,20 +17,23 @@ export function ConnectionProvider({ children }) {
     const [comments, setComments] = useState([]);
     const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
+    const [connectionError, setConnectionError] = useState(null);
 
     //Hämtar sparad data från servern via fetch
     useEffect(() => {
         const fetchData = async () => {
             const [rooms, roomError] = await getRooms();
             if (roomError) console.log(roomError);
-            setRooms(rooms);
+            if (rooms) setRooms(rooms);
             const [posts, postError] = await getPosts();
             if (postError) console.log(postError);
-            posts.reverse();
-            setPosts(posts);
+            if (posts) {
+                posts.reverse();
+                setPosts(posts);
+            }
             const [comments, commentsError] = await getComments();
             if (commentsError) console.log(commentsError);
-            setComments(comments);
+            if (comments) setComments(comments);
         }
         fetchData();
     }, [])
@@ -39,8 +42,13 @@ export function ConnectionProvider({ children }) {
     useEffect(() => {
         if (connection === null) {
             const createHubConnection = async () => {
-                const connection = await startConnection();
-                setConnection(connection);
+                const [connection, error] = await startConnection();
+                if (error) {
+                    setConnectionError(error);
+                } else {
+                    console.log("Connection Started");
+                    setConnection(connection);
+                }
             }
             createHubConnection();
         }
@@ -115,10 +123,9 @@ export function ConnectionProvider({ children }) {
                 rooms,
                 posts,
                 comments,
-                error,
-                setError,
                 postFilter,
-                setPostFilter
+                setPostFilter,
+                connectionError
             }}>
             {children}
         </ConnectionContext.Provider>

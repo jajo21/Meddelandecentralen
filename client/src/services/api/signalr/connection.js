@@ -17,13 +17,10 @@ export const startConnection = async () => {
         console.log("Reconnected")
     });
 
-    connection.start().then(() => {
-        console.log("Connection Started");
-        if (!connection._connectionStarted) {
-            console.error('No connection to SignalR');
-            return;
-        }
-    });
-
-    return connection;
+    try {
+        await connection.start();
+        return [connection, null]
+    } catch (error) {
+        return [null, error]
+    }
 }

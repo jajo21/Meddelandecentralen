@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { getUser } from '../services/localstorage/user';
 
 import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';
 import AddFilter from './AddFilter';
 import ErrorMessage from './ErrorMessage';
+import Welcome from './Welcome';
 
 import './css/chat.css';
 
@@ -18,13 +18,7 @@ function Chat({ user, showAddPost, showAddFilter, setShowAddPost, setShowAddFilt
     return (
         <main>
             <div className='chat'>
-                <div className='welcome-user'>
-                    <div className='circle'>
-                        <span className='profile-picture'>Picture</span>
-                    </div>
-                    <h2 className='welcome'>Välkommen {user}!</h2>
-                </div>
-
+                <Welcome user={user} />
                 {showAddPost &&
                     <AddPost
                         post={post}
@@ -42,12 +36,10 @@ function Chat({ user, showAddPost, showAddFilter, setShowAddPost, setShowAddFilt
                         setShowAddRoom={setShowAddRoom}
                     />
                 }
-
                 <AddFilter
                     showAddFilter={showAddFilter}
                     setShowAddFilter={setShowAddFilter}
                 />
-
                 <Posts />
                 <ErrorMessage />
             </div>

@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import { startConnection } from '../services/api/signalr/connection';
+import { toast } from 'react-toastify';
+
 import UserContext from './UserContext';
+import { startConnection } from '../services/api/signalr/connection';
 import { getRooms } from '../services/api/http/rooms';
 import { getPosts } from '../services/api/http/posts';
 import { getComments } from '../services/api/http/comments';
-
-import { toast } from 'react-toastify';
+import { getRoomName, getRoomNameByPostId } from '../services/roomService';
+import { getPostUser } from '../services/postService';
 
 const ConnectionContext = createContext();
 
@@ -18,6 +20,7 @@ export function ConnectionProvider({ children }) {
     const [postFilter, setPostFilter] = useState(null);
     const [error, setError] = useState(null);
     const [connectionError, setConnectionError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
 
     //Hämtar sparad data från servern via fetch
     useEffect(() => {
@@ -69,6 +72,7 @@ export function ConnectionProvider({ children }) {
             if (connection) {
                 connection.on('ReceivePost', (post) => {
                     setPosts(prevState => [post, ...prevState]);
+                    setSuccessMessage({ type: "post", post });
                 });
 
                 connection.on('RecievePostId', response => {
@@ -81,6 +85,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('RecieveComment', comment => {
                     setComments(prevState => [...prevState, comment]);
+                    setSuccessMessage({ type: "comment", comment });
                 })
 
                 connection.on('RecieveCommentId', response => {
@@ -93,6 +98,7 @@ export function ConnectionProvider({ children }) {
 
                 connection.on('RecieveRoom', (room) => {
                     setRooms(prevState => [...prevState, room])
+                    setSuccessMessage({ type: "room", room });
                 });
 
                 connection.on('RecieveError', (error) => {
@@ -113,7 +119,16 @@ export function ConnectionProvider({ children }) {
             toast.error(error);
             setError(null);
         }
-    }, [error])
+        if (successMessage) {
+            if (successMessage.type === "post")
+                toast.success(`Ett nytt inlägg har skapats i "${getRoomName(rooms, successMessage.post.roomId)}" av ${successMessage.post.user}`)
+            if (successMessage.type === "comment")
+                toast.success(`${successMessage.comment.user} har kommenterat ${getPostUser(posts, successMessage.comment.postId)}'s inlägg i "${getRoomNameByPostId(rooms, posts, successMessage.comment.postId)}"`)
+            if (successMessage.type === "room")
+                toast.success(`Rummet "${successMessage.room.name}" har skapats av ${successMessage.room.user}`)
+            setSuccessMessage(null);
+        }
+    }, [error, successMessage])
 
     //Avsluta connection mot signalr
     const stopConnection = () => {

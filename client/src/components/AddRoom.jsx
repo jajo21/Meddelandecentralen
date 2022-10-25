@@ -5,7 +5,7 @@ import { addRoom } from '../services/api/signalr/room';
 import './css/addroom.css';
 
 function AddRoom({ newRoom, setNewRoom, setShowAddRoom }) {
-    const { connection, error, setError } = useContext(ConnectionContext);
+    const { connection } = useContext(ConnectionContext);
     return (
         <div className='add-room'>
             <div className='add-room-header'>
@@ -17,12 +17,8 @@ function AddRoom({ newRoom, setNewRoom, setShowAddRoom }) {
                 className='add-room-input'
                 placeholder='Namn'
                 value={newRoom}
-                onChange={e => {
-                    setNewRoom(e.target.value)
-                    setError(null);
-                }}
+                onChange={e => setNewRoom(e.target.value)}
             />
-            {error && <p>{error}</p>}
 
             <button className='save-room-button' onClick={() => {
                 addRoom(connection, newRoom);

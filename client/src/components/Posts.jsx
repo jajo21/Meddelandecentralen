@@ -28,10 +28,11 @@ function Posts() {
             {sortedPosts.length > 0 &&
                 sortedPosts.map(post => {
                     const date = new Date(post.date)
+                    const roomName = getRoomName(rooms, post.roomId);
                     return (
                         <div className='post' key={post.id}>
                             <div className='post-room'>
-                                <p>{getRoomName(rooms, post.roomId)}</p>
+                                <p>{roomName}</p>
                             </div>
                             <div className='post-info'>
                                 <div className='circle'>

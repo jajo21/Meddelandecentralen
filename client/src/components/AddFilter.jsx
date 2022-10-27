@@ -17,7 +17,7 @@ function AddFilter({ showAddFilter, setShowAddFilter }) {
                 </div>
                 :
                 <div className='filter-header'>
-                    <FontAwesomeIcon icon={faFilter} /> Inget filter
+                    <FontAwesomeIcon icon={faFilter} /> Alla rum
                 </div>
             }
 
@@ -28,7 +28,7 @@ function AddFilter({ showAddFilter, setShowAddFilter }) {
                         setShowAddFilter(prevState => !prevState)
                         setPostFilter(null);
                     }}
-                    >Inget filter
+                    >Alla rum
                     </div>
 
                     {rooms.length > 0 && rooms.map(room => {

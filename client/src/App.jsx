@@ -5,6 +5,7 @@ import Chat from './components/Chat';
 import UserContext from './contexts/UserContext';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import ErrorBoundary from './components/ErrorBoundary';
 
 import './app.css';
 
@@ -13,7 +14,7 @@ function App() {
     const [showAddPost, setShowAddPost] = useState(false);
     const [showAddFilter, setShowAddFilter] = useState(false);
     return (
-        <>
+        <ErrorBoundary>
             {hasUser ?
                 <>
                     <Navbar
@@ -33,7 +34,7 @@ function App() {
                 </>
                 :
                 <Login />}
-        </>
+        </ErrorBoundary>
     )
 }
 

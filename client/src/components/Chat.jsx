@@ -4,7 +4,7 @@ import AddPost from './AddPost';
 import AddRoom from './AddRoom';
 import Posts from './Posts';
 import AddFilter from './AddFilter';
-import ErrorMessage from './ErrorMessage';
+import PopupMessage from './PopupMessage';
 import Welcome from './Welcome';
 
 import './css/chat.css';
@@ -41,7 +41,7 @@ function Chat({ user, showAddPost, showAddFilter, setShowAddPost, setShowAddFilt
                     setShowAddFilter={setShowAddFilter}
                 />
                 <Posts />
-                <ErrorMessage />
+                <PopupMessage />
             </div>
         </main>
     )

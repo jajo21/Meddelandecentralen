@@ -3,7 +3,7 @@ import React from 'react'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function ErrorMessage() {
+function PopupMessage() {
     return (
         <div>
             <ToastContainer
@@ -22,4 +22,4 @@ function ErrorMessage() {
     )
 }
 
-export default ErrorMessage
+export default PopupMessage

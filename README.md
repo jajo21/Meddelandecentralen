@@ -17,6 +17,11 @@ Applikationen ska använda ramverket SignalR för realtidskommunikationen mellan
 3. När alla paket har laddats klart skriver du i terminalen: `npm start`, det här startar både backend-api:et och klientgränssnittet.
 4. Normalt ska programmet öppnas i din webbläsare, om det inte gör det, öppna valfri webbläsare och navigera in på http://localhost:5000/.
 
+**Logga in**
+
+1. Logga in genom att skriva valfritt användarnamn.
+2. När du är inloggad kan du använda applikationen.
+
 ## Lägesrapport
 
 ### Klassdiagram över klientgränssnittet

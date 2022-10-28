@@ -28,16 +28,25 @@ Applikationen ska använda ramverket SignalR för realtidskommunikationen mellan
 
 ### Klassdiagram över klientgränssnittet
 
+_Skapades och lämnades in under lägesrapporten (tagg lagesrapport)._  
 _Vill också förtydliga att de olika färgerna på strecken från contexterna i diagrammet inte har någon betydelse i sig, dessa är endast färgade för att göra det lättare att visuellt tyda diagrammet._  
 _(Tryck på bilden för att göra den större)_
-
 <img src="./documentation/Klassdiagram.png" width="100%">
 
-### Kanban via trello - uppdaterad bild över projektets kanban-bräde
+### Kanban via trello
 
+**Bild på det initiala kanban-brädet**  
+_Jag har valt att skapa två "att göra" kolumner enbart för att kunna visa alla kort visuellt på en bild._  
+_(Tryck på bilden för att göra den större)_
+<img src="./documentation/Meddelandecentralen-kanban-planering.png" width="100%">
+
+**Uppdaterad bild över projektets kanban-bräde vid lägesrapporten (tagg lagesrapport)**  
 _Kolumnen "Färdiga" har fler kort än vad som är visuellt synligt på bilden, klicka vidare in på länken för att se alla kort._  
 _(Tryck på bilden för att göra den större)_
-
 <img src="./documentation/Meddelandecentralen-kanban-uppdaterad.png" width="100%">
+
+**Nuvarande status på kanban-brädet vid inlämning (tagg inlamning)**  
+_(Tryck på bilden för att göra den större)_
+<img src="./documentation/Meddelandecentralen-kanban-nuvarande.png" width="100%">
 
 ### [Länk till kanban-tavlan](https://trello.com/b/SAuwn9pa/meddelandecentralen)

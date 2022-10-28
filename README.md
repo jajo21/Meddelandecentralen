@@ -2,8 +2,6 @@
 
 **Twitter-liknande chatt-applikation byggd med .NET 6 och React. Realtidskommunikationen skapad med hjälp av SignalR.**
 
----
-
 ## Instruktioner
 
 **Förbered och starta applikationen**
@@ -43,5 +41,3 @@ _(Tryck på bilden för att göra den större)_
 <img src="./documentation/Meddelandecentralen-kanban-uppdaterad.png" width="100%">
 
 ### [Länk till kanban-tavlan](https://trello.com/b/SAuwn9pa/meddelandecentralen)
-
----

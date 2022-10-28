@@ -8,15 +8,6 @@ export const startConnection = async () => {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.onreconnecting((error) => {
-        console.log(error);
-    });
-
-    // show that we're reconnected
-    connection.onreconnected((error) => {
-        console.log("Reconnected")
-    });
-
     try {
         await connection.start();
         return [connection, null]

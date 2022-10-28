@@ -105,6 +105,17 @@ export function ConnectionProvider({ children }) {
                     setError(error);
                 });
 
+                connection.onreconnecting((error) => {
+                    console.log(error);
+                    setConnectionError({ message: "Anslutningen mot SignalR har stängts ner, vi försöker återansluta! Felkod: " + error.message });
+                });
+
+                connection.onreconnected(() => {
+                    console.log("Reconnected")
+                    setConnectionError(null);
+                    toast.success("Vi har återupprättat anslutningen mot SignalR!");
+                });
+
             }
         }
         connectionOn();
@@ -134,7 +145,10 @@ export function ConnectionProvider({ children }) {
     const stopConnection = () => {
         if (connection !== null) {
             connection.stop().then(() => {
-                console.log("Connection closed!");
+                if (user) {
+                    setConnectionError({ message: "Anslutningen mot SignalR stängdes ner, uppdatera sidan för att upprätta ny anslutning!" })
+                }
+                console.log("Connection to SignalR closed!");
             });
         }
     };

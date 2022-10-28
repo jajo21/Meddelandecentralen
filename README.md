@@ -7,8 +7,8 @@
 **Förbered och starta applikationen**
 
 1. Ladda ner repot från https://github.com/jajo21/Meddelandecentralen.
-2. Leta upp valfri terminal och utgå från nerladdad Meddelandecentralen mapp, navigera sedan in i mappen client via terminalen och skriv där: `npm ci ` nu laddas alla nödvändiga paket ner som behövs för att kunna köra klienten.
-3. När alla paket har laddats klart skriver du i terminalen: `npm start`, det här startar både backend-api:et och klientgränssnittet.
+2. Leta upp valfri terminal och utgå från nerladdad Meddelandecentralen mapp, navigera sedan in i mappen client via terminalen och skriv där: `npm ci` nu laddas alla nödvändiga paket ner som behövs för att kunna köra klienten.
+3. När alla paket har laddats klart skriver du i terminalen: `npm start` det här startar både backend-api:et och klientgränssnittet.
 4. Normalt ska programmet öppnas i din webbläsare, om det inte gör det, öppna valfri webbläsare och navigera in på http://localhost:5000/.
 
 **Logga in**

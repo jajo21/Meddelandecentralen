@@ -25,7 +25,7 @@ function Posts() {
 
     return (
         <div className='posts'>
-            {sortedPosts.length > 0 &&
+            {sortedPosts.length > 0 && !connectionError &&
                 sortedPosts.map(post => {
                     const date = new Date(post.date)
                     const roomName = getRoomName(rooms, post.roomId);
@@ -61,10 +61,7 @@ function Posts() {
                 <div className='connection-error'>
                     <h2>Error</h2>
                     <p>Något har gått fel med uppkopplingen till servern.</p>
-                    <details>
-                        <summary>Details</summary>
-                        {connectionError.message}
-                    </details>
+                    <p><strong>Detaljer:</strong> {connectionError.message}</p>
                 </div>
             }
         </div>

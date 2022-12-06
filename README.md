@@ -1,4 +1,4 @@
-# Meddelandecentralen
+# Meddelandecentralen - Oktober 2022
 
 **Twitter-liknande chatt-applikation byggd med .NET 6 och React. Realtidskommunikationen är skapad med hjälp av SignalR.**
 
@@ -50,3 +50,35 @@ _(Tryck på bilden för att göra den större)_
 <img src="./documentation/Meddelandecentralen-kanban-nuvarande.png" width="100%">
 
 ### [Länk till kanban-tavlan](https://trello.com/b/SAuwn9pa/meddelandecentralen)
+
+## Syfte - YH-utbildning: Webbutvecklare .NET
+
+- Inlämningsuppgift i kursen Webbapplikationer med realtidskommunikation - Oktober 2022
+- Meddelandecentralen: Skapa en Twitter-liknande chatt-applikation byggd med .NET 6 och React. Realtidskommunikationen skapad med hjälp av SignalR.
+- Resultat: 100/100 (G)
+
+## Tekniker
+
+- C#
+- ASP.NET Core
+- SignalR
+- WebSockets
+- REST-API
+- React.js
+- Fetch-API
+- Parcel
+- HTML
+- CSS
+
+## Kravspecifikation och uppgiftsbeskrivning
+
+Det här är en fortsättning på Chelsea-international-hostel där vi ska bygga en meddelandecentral för hotellet. Vi har fått en vag beskrivning av VD:n med olika krav som ska uppfyllas sedan är det mitt jobb att bygga en lösning.
+
+|Krav|Uppfyllt|Förklaring|
+|---|---|---|
+|**1** |**Ja**| *Applikationen består av ett server-side API skrivet i C# och ASP.NET Core*|
+|**2** |**Ja**| *När två klienter ansluter samtidigt till API:et så har de tillgång till kollaborativa realtidsfunktioner mellan sig*|
+|**3** |**Ja**| *Det finns ett grafiskt gränssnitt tillgängligt för applikationen*|
+|**4** |**Ja**| *Applikationen möjliggör beställarens önskade funktionalitet enligt vald idé*|
+|**5** |**Ja**| *För realtidskommunikation mellan klienterna används websockets*|
+

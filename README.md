@@ -16,6 +16,20 @@
 1. Logga in genom att skriva valfritt användarnamn.
 2. När du är inloggad kan du använda applikationen.
 
+## Kravspecifikation och uppgiftsbeskrivning
+
+Det här är en fortsättning på Chelsea-international-hostel där vi ska bygga en meddelandecentral för hotellet. Vi har fått en beskrivning av VD:n med olika krav som ska uppfyllas sedan är det mitt jobb att bygga en lösning.
+
+[Projekt Meddelandecentralen Uppgiftsbeskrivning.pdf](https://github.com/jajo21/Meddelandecentralen/files/10234823/Projekt.Meddelandecentralen.Uppgiftsbeskrivning.pdf)
+
+|Krav|Uppfyllt|Förklaring|
+|---|---|---|
+|**1** |**Ja**| *Applikationen består av ett server-side API skrivet i C# och ASP.NET Core*|
+|**2** |**Ja**| *När två klienter ansluter samtidigt till API:et så har de tillgång till kollaborativa realtidsfunktioner mellan sig*|
+|**3** |**Ja**| *Det finns ett grafiskt gränssnitt tillgängligt för applikationen*|
+|**4** |**Ja**| *Applikationen möjliggör beställarens önskade funktionalitet enligt vald idé*|
+|**5** |**Ja**| *För realtidskommunikation mellan klienterna används websockets*|
+
 ## Projektplan
 
 Från uppdragsebeskrivningen: "Applikationen ska vara baserad på en av de fyra idéerna som finns i uppgiftsbeskrivningen." - Jag har bestämt mig för att skapa nummer 3 "Något i stil med twitter, fast bara för de anställda på hotellet - också här är det viktigt att kunna sortera information per rum".
@@ -69,16 +83,3 @@ _(Tryck på bilden för att göra den större)_
 - Parcel
 - HTML
 - CSS
-
-## Kravspecifikation och uppgiftsbeskrivning
-
-Det här är en fortsättning på Chelsea-international-hostel där vi ska bygga en meddelandecentral för hotellet. Vi har fått en vag beskrivning av VD:n med olika krav som ska uppfyllas sedan är det mitt jobb att bygga en lösning.
-
-|Krav|Uppfyllt|Förklaring|
-|---|---|---|
-|**1** |**Ja**| *Applikationen består av ett server-side API skrivet i C# och ASP.NET Core*|
-|**2** |**Ja**| *När två klienter ansluter samtidigt till API:et så har de tillgång till kollaborativa realtidsfunktioner mellan sig*|
-|**3** |**Ja**| *Det finns ett grafiskt gränssnitt tillgängligt för applikationen*|
-|**4** |**Ja**| *Applikationen möjliggör beställarens önskade funktionalitet enligt vald idé*|
-|**5** |**Ja**| *För realtidskommunikation mellan klienterna används websockets*|
-

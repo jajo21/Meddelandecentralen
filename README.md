@@ -1,6 +1,6 @@
 # Meddelandecentralen - Oktober 2022
 
-**Twitter-liknande chatt-applikation byggd med .NET 6 och React. Realtidskommunikationen är skapad med hjälp av SignalR.**
+**Twitter-liknande chatt-applikation byggd med .NET 6 och React. Realtidskommunikationen är skapad med SignalR.**
 
 ## Instruktioner
 

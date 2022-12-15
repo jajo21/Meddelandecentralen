@@ -18,7 +18,7 @@
 
 ## Kravspecifikation och uppgiftsbeskrivning
 
-Det här är en fortsättning på Chelsea-international-hostel där vi ska bygga en meddelandecentral för hotellet. Vi har fått en beskrivning av VD:n med olika krav som ska uppfyllas sedan är det mitt jobb att bygga en lösning.
+Det här är en fortsättning på Chelsea-international-hostel uppgiften, nu ska vi bygga en meddelandecentral för hotellet. Vi har fått en beskrivning av VD:n med olika krav som ska uppfyllas, sedan är det mitt jobb att bygga en lösning.
 
 [Projekt Meddelandecentralen Uppgiftsbeskrivning.pdf](https://github.com/jajo21/Meddelandecentralen/files/10234823/Projekt.Meddelandecentralen.Uppgiftsbeskrivning.pdf)
 

@@ -18,7 +18,7 @@
 
 ## Projektplan
 
-Applikationen ska vara baserad på en av de fyra idéerna som finns i uppgiftsbeskrivningen. Jag har bestämt mig för att skapa nummer 3 "Något i stil med twitter, fast bara för de anställda på hotellet - också här är det viktigt att kunna sortera information per rum".
+Från uppdragsebeskrivningen: "Applikationen ska vara baserad på en av de fyra idéerna som finns i uppgiftsbeskrivningen." - Jag har bestämt mig för att skapa nummer 3 "Något i stil med twitter, fast bara för de anställda på hotellet - också här är det viktigt att kunna sortera information per rum".
 
 Min tanke är därför att skapa en plattform likt twitter där användare ska kunna skapa inlägg som resten av personalen på hotellet kan ta del av i realtid. Personal ska även kunna kommentera inlägg samt filtrera dessa inlägg efter rum.
 
